@@ -1,0 +1,10 @@
+RustDesk
+Copyright holders include Purslane Tech Pte. Ltd. and RustDesk contributors.
+License: GNU Affero General Public License, version 3.
+
+Upstream project: https://github.com/rustdesk/rustdesk
+Source baseline: 669cb8ac62aa20d3626395877d7dd0357aec7ed2
+
+Original source-file notices identify the respective copyright holders.
+SwiftRust is an independent modified distribution of RustDesk.
+The GNU Affero General Public License, version 3, follows.

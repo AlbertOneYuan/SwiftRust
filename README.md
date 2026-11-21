@@ -1,182 +1,86 @@
-<p align="center">
-  <img src="res/logo-header.svg" alt="RustDesk - Your remote desktop"><br>
-  <a href="#raw-steps-to-build">Build</a> •
-  <a href="#how-to-build-with-docker">Docker</a> •
-  <a href="#file-structure">Structure</a> •
-  <a href="#screenshots">Screenshots</a><br>
-  [<a href="docs/README-UA.md">Українська</a>] | [<a href="docs/README-CS.md">česky</a>] | [<a href="docs/README-ZH.md">中文</a>] | [<a href="docs/README-HU.md">Magyar</a>] | [<a href="docs/README-ES.md">Español</a>] | [<a href="docs/README-FA.md">فارسی</a>] | [<a href="docs/README-FR.md">Français</a>] | [<a href="docs/README-DE.md">Deutsch</a>] | [<a href="docs/README-PL.md">Polski</a>] | [<a href="docs/README-ID.md">Indonesian</a>] | [<a href="docs/README-FI.md">Suomi</a>] | [<a href="docs/README-ML.md">മലയാളം</a>] | [<a href="docs/README-JP.md">日本語</a>] | [<a href="docs/README-NL.md">Nederlands</a>] | [<a href="docs/README-IT.md">Italiano</a>] | [<a href="docs/README-RU.md">Русский</a>] | [<a href="docs/README-PTPT.md">Português (Portugal)</a>] | [<a href="docs/README-PTBR.md">Português (Brasil)</a>] | [<a href="docs/README-EO.md">Esperanto</a>] | [<a href="docs/README-KR.md">한국어</a>] | [<a href="docs/README-AR.md">العربي</a>] | [<a href="docs/README-VN.md">Tiếng Việt</a>] | [<a href="docs/README-DA.md">Dansk</a>] | [<a href="docs/README-GR.md">Ελληνικά</a>] | [<a href="docs/README-TR.md">Türkçe</a>] | [<a href="docs/README-NO.md">Norsk</a>] | [<a href="docs/README-RO.md">Română</a>] | [<a href="docs/README-KA.md">ქართული</a>]<br>
-  <b>We need your help to translate this README, <a href="https://github.com/rustdesk/rustdesk/tree/master/src/lang">RustDesk UI</a> and <a href="https://github.com/rustdesk/doc.rustdesk.com">RustDesk Doc</a> to your native language</b>
-</p>
+# SwiftRust
 
-> [!Caution]
-> **Misuse Disclaimer:** <br>
-> The developers of RustDesk do not condone or support any unethical or illegal use of this software. Misuse, such as unauthorized access, control or invasion of privacy, is strictly against our guidelines. The authors are not responsible for any misuse of the application.
+**随时随地，快速连接远程桌面。**
 
+SwiftRust 是 Albert 基于 [RustDesk](https://github.com/rustdesk/rustdesk) 开发的 iOS 远程客户端。在保留 RustDesk 连接核心及原有鼠标、直接触控手势的基础上，使用 SwiftUI / UIKit 重建 iOS 界面，并改进触控、键盘、终端、文件传输和多窗口体验。
 
-Chat with us: [Discord](https://discord.gg/nDceKgxnkV) | [Twitter](https://twitter.com/rustdesk) | [Reddit](https://www.reddit.com/r/rustdesk) | [YouTube](https://www.youtube.com/@rustdesk)
+[项目仓库](https://github.com/AlbertOneYuan/SwiftRust) · [产品页面源码](website/) · [iOS 编译指南](docs/swiftrust/BUILD_IOS.md) · [修改记录](docs/swiftrust/MODIFICATIONS.md) · [隐私声明](docs/swiftrust/PRIVACY.md)
 
-[![RustDesk Server Pro](https://img.shields.io/badge/RustDesk%20Server%20Pro-Advanced%20Features-blue)](https://rustdesk.com/pricing.html)
+## iOS 改进
 
-Yet another remote desktop solution, written in Rust. Works out of the box with no configuration required. You have full control of your data, with no concerns about security. You can use our rendezvous/relay server, [set up your own](https://rustdesk.com/server), or [write your own rendezvous/relay server](https://github.com/rustdesk/rustdesk-server-demo).
+| 方向 | SwiftRust 的修改 |
+| --- | --- |
+| 原生界面 | SwiftUI / UIKit 主页、设备列表、设置和控制界面；SF Symbols、深浅色外观、可切换 App 图标。原生 App 不加载 Flutter 界面运行时。 |
+| 输入与手势 | 新增触控板、新直接触控模式，保留 RustDesk 原版鼠标及直接触控模式；双指滚动、长按拖动、缩放与画布移动，支持震动反馈。 |
+| 指针与画布 | 可调指针大小、移动速度、滚动速度及方向；画布锁定、最小缩放限制、显示器切换和远端支持的分辨率选择。 |
+| 快捷键盘 | 分页快捷面板、自定义组合键、震动开关；系统键盘与快捷面板切换，适配横竖屏及不同窗口尺寸。 |
+| 终端 | 基于 SwiftTerm 的原生终端、多标签、标签重命名和快捷键面板。 |
+| 文件传输 | 本机上传、远端下载、下载管理、重复下载检查、多选和长按操作；远端永久删除前确认。 |
+| 多窗口 | 在系统支持的设备上打开多个独立 SwiftRust 窗口，连接不同机器，或分别查看同一机器的不同显示器。 |
+| 快速启动 | 扫码连接、桌面图标长按菜单、按连接类型保存设备入口、`swiftrust://` 参数启动及快捷指令入口。 |
+| 网络设置 | SOCKS5 / HTTPS 代理输入优化，支持域名或 IP 加端口及代理连通延迟显示；内嵌用户态 Tailscale，支持 Auth key。 |
+| 会话管理 | 区分启动恢复与后台返回重连，保留桌面、终端、文件传输等会话类型；可配置后台断开策略和连接确认。 |
+| 信息与语言 | 原生统计浮层、语言选择、缺失界面译文的 Apple 翻译补全，以及隐私和开源声明页面。 |
 
-![image](https://user-images.githubusercontent.com/71636191/171661982-430285f0-2e12-4b1d-9957-4a58e375304d.png)
+多窗口能力由系统决定；后台运行受 iOS 限制。分辨率切换取决于远端系统与显示器支持。代理延迟表示代理端点的 TCP 连通延迟，不代表完整远程会话延迟。
 
-RustDesk welcomes contribution from everyone. See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for help getting started.
+## 项目范围与上游
 
-[**FAQ**](https://github.com/rustdesk/rustdesk/wiki/FAQ)
+本仓库以 iOS 客户端改进为主要维护范围。其他平台的使用、编译、自建 ID / 中继服务器以及 RustDesk 通用功能，请参考上游：
 
-[**BINARY DOWNLOAD**](https://github.com/rustdesk/rustdesk/releases)
+- [RustDesk 源码及 README](https://github.com/rustdesk/rustdesk)
+- [RustDesk 官方文档](https://rustdesk.com/docs/)
+- [RustDesk 自建服务器](https://github.com/rustdesk/rustdesk-server)
 
-[**NIGHTLY BUILD**](https://github.com/rustdesk/rustdesk/releases/tag/nightly)
+SwiftRust 基于 RustDesk 提交 `669cb8ac62aa20d3626395877d7dd0357aec7ed2`，是独立修改版本，与 RustDesk 官方项目无隶属关系。完整修改来源、兼容补丁及实现记录见 [修改声明](docs/swiftrust/MODIFICATIONS.md) 和 [原生前端记录](flutter/ios/NATIVE_FRONTEND.md)。
 
-[<img src="https://f-droid.org/badge/get-it-on.png"
-    alt="Get it on F-Droid"
-    height="80">](https://f-droid.org/en/packages/com.carriez.flutter_hbb)
-[<img src="https://flathub.org/api/badge?svg&locale=en"
-    alt="Get it on Flathub"
-    height="80">](https://flathub.org/apps/com.rustdesk.RustDesk)
+## 编译 iOS
 
-## Dependencies
+### 环境
 
-Desktop versions use Flutter or Sciter (deprecated) for GUI. This tutorial is for Sciter only, since it is easier and more friendly to start. Check out our [CI](https://github.com/rustdesk/rustdesk/blob/master/.github/workflows/flutter-build.yml) for building the Flutter version.
+- Apple Silicon Mac、Xcode 及命令行工具；App 最低支持 iOS 17。
+- Rust / rustup、Go，以及 CMake、Ninja、pkg-config、NASM、autoconf、automake、libtool、Python 3。
+- 分别为真机和模拟器构建的 vcpkg 原生编解码依赖。
+- 真机安装需要使用你自己的 Apple 开发团队和可用 Bundle ID。
 
-Please download Sciter dynamic library yourself.
-
-[Windows](https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.win/x64/sciter.dll) |
-[Linux](https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so) |
-[macOS](https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.osx/libsciter.dylib)
-
-## Raw Steps to build
-
-- Prepare your Rust development env and C++ build env
-
-- Install [vcpkg](https://github.com/microsoft/vcpkg), and set `VCPKG_ROOT` env variable correctly
-
-  - Windows: vcpkg install libvpx:x64-windows-static libyuv:x64-windows-static opus:x64-windows-static aom:x64-windows-static
-  - Linux/macOS: vcpkg install libvpx libyuv opus aom
-
-- run `cargo run`
-
-## [Build](https://rustdesk.com/docs/en/dev/build/)
-
-## How to Build on Linux
-
-### Ubuntu 18 (Debian 10)
+已验证工具版本、依赖提交、vcpkg 安装命令及兼容补丁见 [完整 iOS 编译指南](docs/swiftrust/BUILD_IOS.md)。以下命令在仓库根目录执行，需先按该指南准备依赖：
 
 ```sh
-sudo apt install -y zip g++ gcc git curl wget nasm yasm libgtk-3-dev clang libxcb-randr0-dev libxdo-dev \
-        libxfixes-dev libxcb-shape0-dev libxcb-xfixes0-dev libasound2-dev libpulse-dev cmake make \
-        libclang-dev ninja-build libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+git clone --recurse-submodules https://github.com/AlbertOneYuan/SwiftRust.git
+cd SwiftRust
+rustup target add aarch64-apple-ios aarch64-apple-ios-sim
 ```
 
-### openSUSE Tumbleweed
+模拟器：
 
 ```sh
-sudo zypper install gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libXfixes-devel cmake alsa-lib-devel gstreamer-devel gstreamer-plugins-base-devel xdotool-devel
+export VCPKG_ROOT="$PWD/.build-swiftrust/vcpkg-simulator"
+scripts/ios/build.sh simulator
 ```
 
-### Fedora 28 (CentOS 8)
+真机：
 
 ```sh
-sudo yum -y install gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libxdo-devel libXfixes-devel pulseaudio-libs-devel cmake alsa-lib-devel gstreamer1-devel gstreamer1-plugins-base-devel
+export VCPKG_ROOT="$PWD/.build-swiftrust/vcpkg-device"
+export SWIFTRUST_TEAM_ID=YOUR_TEAM_ID
+export SWIFTRUST_BUNDLE_ID=your.own.swiftrust
+scripts/ios/build.sh device
 ```
 
-### Arch (Manjaro)
+脚本编译 Rust 连接核心、用户态 Tailscale 和原生 App。Xcode 工程位于 `flutter/ios/Runner.xcworkspace`，选择 **Runner**；目录名沿用上游，当前 iOS 界面使用 SwiftUI / UIKit。Rust 构建仍复用名为 `flutter` 的 feature，无需重新运行 Flutter Rust Bridge 代码生成器。
 
-```sh
-sudo pacman -Syu --needed unzip git cmake gcc curl wget yasm nasm zip make pkg-config clang gtk3 xdotool libxcb libxfixes alsa-lib pipewire
-```
+设备与模拟器的静态库不能混用。以上为 Apple Silicon / ARM64 路径；完整流程尚未在空白 Mac 上逐步重建验证。
 
-### Install vcpkg
+## 反馈
 
-```sh
-git clone https://github.com/microsoft/vcpkg
-cd vcpkg
-git checkout 2023.04.15
-cd ..
-vcpkg/bootstrap-vcpkg.sh
-export VCPKG_ROOT=$HOME/vcpkg
-vcpkg/vcpkg install libvpx libyuv opus aom
-```
+- 问题与建议：[GitHub Issues](https://github.com/AlbertOneYuan/SwiftRust/issues)
+- 邮箱：[airefactorme@icloud.com](mailto:airefactorme@icloud.com)
+- 关注开发者：[Albert on X](https://x.com/kiwicatone)
 
-### Fix libvpx (For Fedora)
+反馈时请提供 App 版本、设备与系统版本、连接类型及复现步骤；请勿提交密码、Auth key、私钥或其他敏感信息。
 
-```sh
-cd vcpkg/buildtrees/libvpx/src
-cd *
-./configure
-sed -i 's/CFLAGS+=-I/CFLAGS+=-fPIC -I/g' Makefile
-sed -i 's/CXXFLAGS+=-I/CXXFLAGS+=-fPIC -I/g' Makefile
-make
-cp libvpx.a $HOME/vcpkg/installed/x64-linux/lib/
-cd
-```
+## 许可证与致谢
 
-### Build
+SwiftRust 保留 RustDesk 的版权及许可，按 [GNU AGPL v3](LICENCE) 提供。第三方组件分别遵循其原有许可证，详见 [NOTICE](NOTICE)、[第三方声明](THIRD_PARTY_NOTICES.md) 及应用内 Open-Source Notices。
 
-```sh
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source $HOME/.cargo/env
-git clone --recurse-submodules https://github.com/rustdesk/rustdesk
-cd rustdesk
-mkdir -p target/debug
-wget https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so
-mv libsciter-gtk.so target/debug
-VCPKG_ROOT=$HOME/vcpkg cargo run
-```
-
-## How to build with Docker
-
-Begin by cloning the repository and building the Docker container:
-
-```sh
-git clone https://github.com/rustdesk/rustdesk
-cd rustdesk
-git submodule update --init --recursive
-docker build -t "rustdesk-builder" .
-```
-
-Then, each time you need to build the application, run the following command:
-
-```sh
-docker run --rm -it -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user/.cargo/git -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" rustdesk-builder
-```
-
-Note that the first build may take longer before dependencies are cached, subsequent builds will be faster. Additionally, if you need to specify different arguments to the build command, you may do so at the end of the command in the `<OPTIONAL-ARGS>` position. For instance, if you wanted to build an optimized release version, you would run the command above followed by `--release`. The resulting executable will be available in the target folder on your system, and can be run with:
-
-```sh
-target/debug/rustdesk
-```
-
-Or, if you're running a release executable:
-
-```sh
-target/release/rustdesk
-```
-
-Please ensure that you run these commands from the root of the RustDesk repository, or the application may not find the required resources. Also note that other cargo subcommands such as `install` or `run` are not currently supported via this method as they would install or run the program inside the container instead of the host.
-
-## File Structure
-
-- **[libs/hbb_common](https://github.com/rustdesk/hbb_common)**: video codec, config, tcp/udp wrapper, and some other utility functions shared with the server
-- **[libs/base](https://github.com/rustdesk/rustdesk/tree/master/libs/base)**: protobuf, fs functions for file transfer, keyboard and platform code used only by this app
-- **[libs/scrap](https://github.com/rustdesk/rustdesk/tree/master/libs/scrap)**: screen capture
-- **[libs/enigo](https://github.com/rustdesk/rustdesk/tree/master/libs/enigo)**: platform specific keyboard/mouse control
-- **[libs/clipboard](https://github.com/rustdesk/rustdesk/tree/master/libs/clipboard)**: file copy and paste implementation for Windows, Linux, macOS.
-- **[src/ui](https://github.com/rustdesk/rustdesk/tree/master/src/ui)**: obsolete Sciter UI (deprecated)
-- **[src/server](https://github.com/rustdesk/rustdesk/tree/master/src/server)**: audio/clipboard/input/video services, and network connections
-- **[src/client.rs](https://github.com/rustdesk/rustdesk/tree/master/src/client.rs)**: start a peer connection
-- **[src/rendezvous_mediator.rs](https://github.com/rustdesk/rustdesk/tree/master/src/rendezvous_mediator.rs)**: Communicate with [rustdesk-server](https://github.com/rustdesk/rustdesk-server), wait for remote direct (TCP hole punching) or relayed connection
-- **[src/platform](https://github.com/rustdesk/rustdesk/tree/master/src/platform)**: platform specific code
-- **[flutter](https://github.com/rustdesk/rustdesk/tree/master/flutter)**: Flutter code for desktop and mobile
-
-## Screenshots
-
-![Connection Manager](https://github.com/rustdesk/rustdesk/assets/28412477/db82d4e7-c4bc-4823-8e6f-6af7eadf7651)
-
-![Connected to a Windows PC](https://github.com/rustdesk/rustdesk/assets/28412477/9baa91e9-3362-4d06-aa1a-7518edcbd7ea)
-
-![File Transfer](https://github.com/rustdesk/rustdesk/assets/28412477/39511ad3-aa9a-4f8c-8947-1cce286a46ad)
-
-![TCP Tunneling](https://github.com/rustdesk/rustdesk/assets/28412477/78e8708f-e87e-4570-8373-1360033ea6c5)
-
+感谢 RustDesk 及其贡献者提供连接核心，感谢 SwiftTerm、Tailscale 及其他开源组件的作者。本项目不提供任何担保；请仅连接你拥有或已获授权访问的设备。

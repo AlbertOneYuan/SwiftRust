@@ -436,6 +436,13 @@ impl Client {
         if config::is_incoming_only() && !is_switch_sides_back(conn_type, &interface).await {
             bail!("Incoming only mode");
         }
+        #[cfg(target_os = "ios")]
+        if let Some(proxy) = crate::platform::ios_native::tailscale_proxy(peer) {
+            let stream = hbb_common::tcp::FramedStream::connect(
+                check_port(peer, RELAY_PORT + 1), None, &proxy, CONNECT_TIMEOUT,
+            ).await?;
+            return Ok(((Stream::Tcp(stream), true, None, None, "Tailscale"), (0, String::new()), false));
+        }
         // to-do: remember the port for each peer, so that we can retry easier
         if hbb_common::is_ip_str(peer) {
             return Ok((

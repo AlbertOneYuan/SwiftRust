@@ -1,0 +1,14 @@
+--- build.rs.original
++++ build.rs
+@@ -180,6 +180,11 @@
+ 
+         // Roughly based on `dist-build/ios.sh` in the libsodium sources
+         match &*target {
++            "aarch64-apple-ios-sim" => {
++                cflags += " -arch arm64 -target arm64-apple-ios15.0-simulator";
++                cflags += &format!(" -isysroot {}", sdk_dir_simulator);
++                host_arg = "--host=aarch64-apple-darwin".to_string();
++            }
+             "aarch64-apple-ios" => {
+                 cflags += " -arch arm64";
+                 cflags += &format!(" -isysroot {}", sdk_dir_ios);

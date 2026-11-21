@@ -1,0 +1,11 @@
+Third-Party Trademarks
+
+GitHub and the Invertocat mark are trademarks of GitHub, Inc.
+X and the X logo are trademarks of X Corp.
+
+The marks identify links to the SwiftRust project and developer profile.
+No affiliation with, or endorsement by, their owners is implied.
+Trademark rights are not granted under SwiftRust's software license.
+
+GitHub: https://brand.github.com/foundations/logo
+X: https://about.x.com/en/who-we-are/brand-toolkit

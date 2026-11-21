@@ -1,0 +1,121 @@
+# SwiftRust Privacy Policy
+
+Last updated: November 21, 2026.
+
+## About This Policy
+
+This policy covers the SwiftRust iOS app, a client for remote devices you are authorized to access. Updated November 21, 2026.
+
+SwiftRust has no developer-operated server for collecting app user data. It does not automatically send remote screens, files, passwords, clipboard contents, connection history or usage records to the developer. There are no ads, behavioral analytics or automatic crash reports sent to the developer.
+
+## Connections and External Services
+
+Remote access requires network communication. SwiftRust exchanges connection details with your remote devices, default or custom ID, relay and API servers, and any proxies you enable. This may include device IDs, addresses, ports, authentication details and network metadata. Session traffic includes screens, audio, input, files and, when enabled, clipboard contents. This traffic is not sent to a developer-operated collection server.
+
+Service providers may process or retain data under their own settings and privacy policies. Use only devices you may access and providers you trust. You can choose self-hosted servers, disable proxies or turn off session features. The developer does not receive these providers’ backend records and cannot access or delete records on their behalf.
+
+## Data Stored on Your Device
+
+Connection history, favorites, device names, preferences, shortcuts, cached translations and downloads stay in the app’s local storage. Uploads may create temporary copies. Local diagnostic logs may contain device addresses, connection times and errors. These contents are not automatically sent to the developer.
+
+Signing in sends credentials and verification codes to the API service you use. Sign-in state and access tokens stay on your device. The connection core stores saved remote passwords. Proxy drafts and credentials are kept in the device Keychain; the connection core also manages the active proxy settings.
+
+## Tailscale
+
+The embedded Tailscale node runs only when you enable it. It does not create a system VPN or route traffic from other apps. Browser authorization and Auth key sign-in contact Tailscale, which may process account details, node names, addresses, public keys and connection metadata. SDK log uploads are disabled; Tailscale may still keep records needed to provide its service.
+
+Auth keys are not written to app preferences, Keychain or app logs. Node identity is stored in the app’s private directory and excluded from system backups. Signing out of Tailscale clears local node state. Contact Tailscale or your tailnet administrator to manage or request deletion of server-side device records, logs and account data.
+
+[Tailscale Privacy Policy](https://tailscale.com/legal/privacy-policy)
+
+## Apple Services
+
+Apple’s Translation framework is used only to translate fixed interface text. It is not given remote screens, hostnames, passwords, input, files or clipboard contents. Translations are cached locally, and iOS may download language packs. Apple services, system diagnostics and backups follow your system settings and Apple’s privacy policy.
+
+[Apple Privacy Policy](https://www.apple.com/legal/privacy/)
+
+## Optional Tips (App Store Builds)
+
+Apple processes tips through In-App Purchase and handles payment records and refunds. SwiftRust verifies and completes transactions on your device. It does not see your payment card details or send transactions to a developer-operated purchase database. TestFlight purchases are sandbox tests and do not charge you.
+
+## Camera and Files
+
+Camera access is requested only when you open the QR scanner. Camera images are used to read connection codes, not saved or uploaded to the developer. File import accesses only items you authorize in the system picker. You can revoke permissions in iOS Settings. Manual remote ID entry works without camera access.
+
+## Retention and Deletion
+
+SwiftRust does not create developer-hosted user accounts. The developer has no backend database of your accounts, session contents or files to retrieve or delete. Signing in to an external service creates no account with the SwiftRust developer.
+
+Local data remains until you delete it, clear its settings or remove the app. Delete connection history and saved passwords from device menus, and local files from Downloads. To clear proxy credentials, disable the proxy, clear the address and authentication fields, then save. Removing the app may leave Keychain items, backups, exported files and remote data intact.
+
+You can stop connections, disable Tailscale or proxies, sign out, or revoke system permissions to stop the related features. Ask the relevant provider or administrator about server-side retention, account deletion and other data rights. Their policies and applicable law govern those requests. Clearing local data or signing out does not automatically delete server-side records.
+
+## Feedback and Contact
+
+If you choose to email the developer, the developer receives your email address, message and any files or logs you attach to respond and investigate the issue. SwiftRust does not send feedback or attach logs automatically. Please leave out passwords, Auth keys and private information that is not needed.
+
+Feedback is used only to respond and resolve issues. Contact the address below to request deletion of feedback held by the developer, except where retention is required by law. GitHub and X links open only when you select them. Those platforms handle account and access data under their own policies.
+
+Contact: airefactorme@icloud.com
+
+---
+
+# SwiftRust 隐私声明
+
+更新日期：2026-11-21。
+
+## 适用范围与开发者承诺
+
+本声明适用于 SwiftRust iOS 客户端，更新日期为 2026-11-21。SwiftRust 是连接你有权访问的远程设备的客户端。
+
+SwiftRust 开发者不运营用于接收应用用户数据的后台服务。应用不会自动向开发者上传远程画面、文件、密码、剪贴板、连接历史或使用记录，也未接入广告、行为分析或自动上传至开发者的崩溃收集服务。
+
+## 远程连接与外部服务
+
+客户端联网不等于向开发者收集数据。应用运行和使用连接功能时，会与远程设备、默认或自定义 ID／中继／API 服务器及启用的代理交换连接所需的设备标识、地址、端口、认证信息和网络元数据。画面、声音、输入、文件和启用后的剪贴板在相关设备及连接服务间传输。
+
+这些服务可能按其配置和隐私政策处理、记录或保存数据。请自行确认远程设备的访问权限及服务提供方的可信程度；你可以选择自建服务器、关闭代理或停用不需要的会话功能。开发者不接收这些服务的后台记录，也无法替服务提供方访问或删除其数据。
+
+## 本机数据与凭据
+
+连接历史、收藏、设备别名、界面偏好、自定义快捷键、翻译缓存和下载文件保存在设备上的应用存储中。上传文件时可能建立临时副本；诊断日志也可能在本机包含设备地址、连接时间和错误。应用不自动将这些内容发送给开发者。
+
+登录你使用的 API 服务时，凭据和验证码会发送给该服务；登录状态及访问令牌保存在本机。记住的远程密码由连接核心保存。代理草稿及认证信息存于本机钥匙串，正在使用的代理配置另由连接核心管理。
+
+## Tailscale
+
+仅在启用后运行内嵌 Tailscale 节点，不建立系统 VPN，也不接管其他应用。网页授权或 Auth key 登录会联系 Tailscale；服务方可能处理账号、节点名称、地址、公钥及连接元数据。应用关闭了该 SDK 的日志上传，但服务端仍可能保留运行所需记录。
+
+Auth key 不写入普通设置、钥匙串或应用日志。节点身份状态保存在应用私有目录并排除系统备份。退出 Tailscale 会清除本机节点状态；服务端设备记录、日志及账号数据应向 Tailscale 或 Tailnet 管理员管理和申请删除。
+
+[Tailscale 隐私政策](https://tailscale.com/legal/privacy-policy)
+
+## 苹果翻译与系统服务
+
+苹果 Translation 框架仅接收固定界面文案，用于补全缺失译文，不接收远程画面、主机名、密码、输入、文件或剪贴板内容。译文缓存在本机，系统可能下载语言包。Apple 的服务、系统诊断和备份由你的系统设置及 Apple 隐私政策管理。
+
+[Apple 隐私政策](https://www.apple.com/legal/privacy/)
+
+## 自愿赞助（App Store 版本）
+
+赞助通过 Apple App 内购买处理。Apple 负责付款、交易记录及退款；SwiftRust 仅在设备上验证和完成交易，不读取银行卡信息，也不向开发者上传交易或建立购买档案。TestFlight 内购买使用沙盒，不实际扣款。
+
+## 相机与文件权限
+
+仅在打开扫码连接时请求相机权限，用于识别连接二维码，不保存或上传相机画面到开发者。文件导入只读取你通过系统选择器授权的项目。可在 iOS 设置撤销权限；拒绝相机权限后仍可手动输入远程 ID。
+
+## 保存期限、删除与撤销
+
+开发者没有应用后台的用户账号、会话内容或文件数据库，因此没有可由开发者查询或执行删除的此类数据。SwiftRust 本身不创建开发者托管的用户账号；登录第三方服务不等于向开发者注册账号。
+
+本机数据会保留至你删除相关记录或文件、清除对应配置或移除应用。可在设备菜单删除连接记录和已保存密码，在下载管理删除本机文件。清除代理凭据时请关闭代理、清空地址和认证字段后保存。卸载应用不保证删除钥匙串、系统备份、已导出文件或远端数据。
+
+停止连接、关闭 Tailscale 或代理、退出账号或撤销系统权限可停止相关功能。第三方服务的数据保存、账号删除和权利请求由相应服务提供方或管理员处理，适用其政策和法律要求；本机清除或退出登录不会自动删除服务端数据。
+
+## 主动反馈与联系
+
+仅当你主动发送邮件或提供资料时，开发者会收到你的邮箱地址、邮件内容及你选择附上的文件或日志，用于回复和排查问题。应用不会自动发送反馈或附加日志。请勿提交密码、Auth key 或不必要的私人内容。
+
+反馈资料仅用于处理沟通和问题。你可以通过下方邮箱请求删除开发者持有的反馈资料；法律要求保留的资料除外。GitHub 与 X 链接仅在你打开时跳转到相应平台，其账号和访问数据适用各自政策。
+
+联系邮箱：airefactorme@icloud.com

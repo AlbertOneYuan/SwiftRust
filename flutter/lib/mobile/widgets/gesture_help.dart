@@ -42,9 +42,13 @@ class GestureHelp extends StatefulWidget {
       required this.touchMode,
       required this.onTouchModeChange,
       required this.virtualMouseMode,
+      this.trackpadMode = false,
+      this.onTrackpadModeChange,
       this.inputModel})
       : super(key: key);
   final bool touchMode;
+  final bool trackpadMode;
+  final ValueChanged<bool>? onTrackpadModeChange;
   final OnTouchModeChange onTouchModeChange;
   final VirtualMouseMode virtualMouseMode;
   final InputModel? inputModel;
@@ -94,6 +98,18 @@ class _GestureHelpState extends State<GestureHelp> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      if (isIOS && !_touchMode)
+                        CheckboxListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(translate('Trackpad mode')),
+                          subtitle: Text(translate('trackpad_gestures_tip')),
+                          value: widget.trackpadMode,
+                          onChanged: (value) {
+                            if (value != null) {
+                              widget.onTrackpadModeChange?.call(value);
+                            }
+                          },
+                        ),
                       ToggleSwitch(
                         initialLabelIndex: _selectedIndex,
                         activeFgColor: Colors.white,
@@ -279,7 +295,9 @@ class _GestureHelpState extends State<GestureHelp> {
                     child: Wrap(
                   spacing: space,
                   runSpacing: 2 * space,
-                  children: _touchMode
+                  children: isIOS && !_touchMode && widget.trackpadMode
+                      ? <Widget>[]
+                      : _touchMode
                       ? [
                           GestureInfo(
                               width,

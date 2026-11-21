@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff"><meta name="description" content="SwiftRust 基于 RustDesk，为 iOS 重新打磨。随时随地，快速连接远程桌面；优化 SOCKS5 / HTTPS 代理配置，内嵌 Tailscale，兼顾原生操作、多窗口与终端。">
+<title>SwiftRust — 随时随地，快速连接远程桌面</title>
+<link rel="alternate" hreflang="zh-CN" href="./"><link rel="alternate" hreflang="en" href="en/">
+<link rel="icon" href="assets/swiftrust.png"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳转到主要内容</a>
+<header class="header wrap"><a class="brand" href="#" aria-label="SwiftRust 主页"><img src="assets/swiftrust.png" width="40" height="40" alt=""><span>SwiftRust</span></a><div class="header-tools"><nav aria-label="主导航"><a href="#experience">体验提升</a><a href="#workspace">远程工作空间</a><a href="#open-source">开源说明</a></nav><div class="language-switch" role="group" aria-label="页面语言"><a href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page">中文</a><span aria-hidden="true">/</span><a href="en/" lang="en" hreflang="en">English</a></div></div></header>
+<main id="main">
+<section class="hero wrap" aria-labelledby="hero-title">
+<div class="hero-copy"><h1 id="hero-title">随时随地，<br><span>快速连接远程桌面。</span></h1><p>基于 RustDesk，为 iOS 重新打磨。<br>优化 SOCKS5 / HTTPS 代理，内嵌 Tailscale。</p><div class="hero-actions"><a class="button" href="https://github.com/AlbertOneYuan/SwiftRust" target="_blank" rel="noopener noreferrer">GitHub 项目仓库</a><a class="text-link" href="#experience">探索体验提升</a></div></div>
+<figure class="hero-visual duo-hero" aria-label="iPhone Duo 上的 SwiftRust 实机截图">
+<div class="duo-halo" aria-hidden="true"></div>
+<div class="duo-device duo-hero-wide"><img src="assets/screenshots/duo-landscape.png" width="2853" height="2007" alt="Duo 展开横屏使用 SwiftRust，远程桌面下方显示符号快捷键盘" fetchpriority="high"></div>
+<div class="duo-device duo-hero-portrait"><img src="assets/screenshots/duo-shortcuts.png" width="1398" height="2034" alt="Duo 竖屏上的 SwiftRust 常用快捷键面板"></div>
+<figcaption>iPhone Duo 实机截图 · Apple 官方产品边框</figcaption>
+</figure>
+</section>
+<section class="experience wrap" id="experience" aria-labelledby="experience-title"><div class="section-heading"><h2 id="experience-title">新增顺手操作，<br>保留熟悉手势。</h2><p>新增触控板与新直接触控，<br>RustDesk 原有鼠标与直接触控手势保留。</p></div>
+<div class="tabs" role="tablist" aria-label="体验提升"><button role="tab" id="tab-trackpad" aria-selected="true" aria-controls="experience-panel" tabindex="0" data-mode="trackpad">触控板</button><button role="tab" id="tab-direct" aria-selected="false" aria-controls="experience-panel" tabindex="-1" data-mode="direct">新直接触控</button><button role="tab" id="tab-keyboard" aria-selected="false" aria-controls="experience-panel" tabindex="-1" data-mode="keyboard">快捷键盘</button></div>
+<div class="experience-layout" role="tabpanel" id="experience-panel" aria-labelledby="tab-trackpad" tabindex="0"><div class="demo-stage screenshot-stage" data-active="trackpad">
+<div class="duo-device experience-device"><img id="experience-screenshot" src="assets/screenshots/duo-trackpad.jpg" width="879" height="1280" alt="SwiftRust 新增触控板模式的手势说明" loading="lazy"></div>
+<div class="demo-bottom"><span id="demo-caption">实机截图 · 新增触控板手势</span><button class="replay" id="replay" aria-label="查看截图大图"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+<div class="experience-copy"><h3 id="mode-title">新增触控板，更顺手地操作。</h3><p id="mode-body">在 RustDesk 原有手势之外，新增触控板模式：单指移动指针，双指滚动，长按拖动。原有鼠标与直接触控手势完整保留。</p><ul><li id="mode-note-a">指针大小、移动速度和滚动速度，分别调整。</li><li id="mode-note-b">画面外同样可操作；三指左右浏览，捏合时可拖动画布。</li></ul></div></div></section>
+<section class="workspace wrap" id="workspace" aria-labelledby="workspace-title">
+<div class="section-heading"><h2 id="workspace-title">不止一张<br>远程画面。</h2><p>看桌面、开终端、传文件。<br>每一种连接，都有适合它的原生界面。</p></div>
+<div class="workspace-showcase">
+<div class="workspace-tabs" role="tablist" aria-label="远程工作空间">
+<button role="tab" id="workspace-tab-terminal" aria-selected="true" aria-controls="workspace-terminal" tabindex="0" data-workspace="terminal">终端</button>
+<button role="tab" id="workspace-tab-windows" aria-selected="false" aria-controls="workspace-windows" tabindex="-1" data-workspace="windows">多窗口</button>
+<button role="tab" id="workspace-tab-files" aria-selected="false" aria-controls="workspace-files" tabindex="-1" data-workspace="files">文件传输</button>
+<button role="tab" id="workspace-tab-menu" aria-selected="false" aria-controls="workspace-menu" tabindex="-1" data-workspace="menu">桌面菜单</button>
+</div>
+<div class="workspace-panel terminal-preview terminal-real" id="workspace-terminal" role="tabpanel" aria-labelledby="workspace-tab-terminal" tabindex="0">
+<div class="terminal-real-copy"><h3>终端，完整留在手边。</h3><p>多标签管理会话，常用、字母、符号与功能键随时展开。</p><span>iPhone Duo · 原生终端实机截图</span></div>
+<div class="duo-device terminal-real-device"><img src="assets/screenshots/duo-terminal.png" width="1398" height="2034" alt="Duo 原生终端的多个标签与功能快捷键面板" loading="lazy"></div>
+</div>
+<div class="workspace-panel terminal-real window-real" id="workspace-windows" role="tabpanel" aria-labelledby="workspace-tab-windows" tabindex="0" hidden>
+<div class="terminal-real-copy"><h3>同一台电脑，不同显示器。</h3><p>打开多个 SwiftRust 窗口，连接同一台电脑，再为每个窗口选择不同的显示器。各看一屏，分别操作；也能保留独立的终端与文件会话。</p><span>窗口数量与排布由系统管理 · Duo 实机截图</span></div>
+<div class="window-gallery">
+<div class="window-examples" role="group" aria-label="多窗口实机展示"><button type="button" data-window-example="displays" aria-pressed="true">不同显示器</button><button type="button" data-window-example="windows" aria-pressed="false">独立窗口</button></div>
+<button type="button" class="duo-device terminal-real-device window-screenshot" aria-label="放大多窗口截图"><img id="window-screenshot" src="assets/screenshots/duo-displays.jpg" width="879" height="1280" alt="Duo 上在显示画面菜单中选择显示器 2，可让同一电脑的不同显示器分别显示在多个窗口" loading="lazy"></button>
+</div>
+</div>
+<div class="workspace-panel terminal-real files-real" id="workspace-files" role="tabpanel" aria-labelledby="workspace-tab-files" tabindex="0" hidden>
+<div class="terminal-real-copy"><h3>文件操作，一起完成。</h3><p>本机文件上传到远端，远端文件与文件夹下载到手机。支持多选、批量下载与删除，下载管理方便分享和整理。</p><span>文件传输 · Duo 实机截图</span></div>
+<div class="duo-device terminal-real-device"><img src="assets/screenshots/duo-files.jpg" width="879" height="1280" alt="SwiftRust 在 Duo 上多选远端文件，显示下载和删除按钮" loading="lazy"></div>
+</div>
+<div class="workspace-panel terminal-real menu-real" id="workspace-menu" role="tabpanel" aria-labelledby="workspace-tab-menu" tabindex="0" hidden>
+<div class="terminal-real-copy"><h3>长按图标，直达设备。</h3><p>把常用设备放进桌面菜单，同一设备可分别添加远程桌面和终端入口。也能直接添加窗口或扫码连接。</p><span>在设置中管理桌面菜单设备 · 菜单显示数量由系统决定</span></div>
+<div class="duo-device terminal-real-device"><img src="assets/screenshots/duo-home-menu.jpg" width="879" height="1280" alt="长按 SwiftRust 桌面图标，菜单中显示设备连接、添加窗口和扫码连接" loading="lazy"></div>
+</div>
+<p class="workspace-caption">终端、多窗口、文件传输与桌面菜单均为 Duo 实机截图。</p>
+</div>
+<div class="workspace-notes"><article><h3>终端，也有自己的键盘。</h3><p>多标签切换，长按重命名。常用快捷键与分页面快捷面板，让组合键、符号和导航触手可及。</p></article><article><h3>一台设备，多种打开方式。</h3><p>同一台电脑的不同显示器，可以放在不同窗口中；桌面、终端与文件会话也可各自保留。从桌面长按菜单添加窗口，在系统后台切换。</p></article></div>
+</section>
+<section class="refinements wrap" id="refinements" aria-labelledby="refinements-title"><h2 id="refinements-title">每一处，顺手一点。</h2><div class="detail-columns">
+<article><h3>原生，贯穿始终。</h3><p>SwiftUI 与 UIKit 重绘界面，使用 SF Symbols，支持深色外观与多款应用图标。</p><p class="detail-extra">远程桌面、终端和文件管理，各有自己的原生操作界面。</p></article>
+<article><h3>按自己的手感。</h3><p>新增触控板与新直接触控；保留 RustDesk 原有鼠标与直接触控手势，四种方式随时切换。</p><p class="detail-extra">分别调节指针大小、移动和滚动速度。指针大小独立于画面缩放，画布也可以锁定。</p></article>
+<article><h3>让连接，适应你的网络。</h3><p>SOCKS5 / HTTPS 代理支持网址或 IP 加端口、独立开关与延迟检测。内嵌 Tailscale，支持网页授权和 Auth key 登录。</p><p class="detail-extra">在应用内连接 Tailnet 设备，无需建立系统 VPN。远端需运行 Tailscale 与 RustDesk，并开启直接 IP 访问及相应权限。</p></article>
+<article><h3>从桌面，直接出发。</h3><p>桌面菜单设备、全屏二维码连接，以及 swiftrust:// 参数启动，把常用入口留在手边。</p><p class="detail-extra">也可导出快捷指令模板，按系统流程添加到主屏幕，并自定义图标。</p></article>
+<article><h3>回来，继续原来的事。</h3><p>分别设置启动时恢复连接与回到前台自动重连，保留桌面、终端或文件传输的连接类型。</p><p class="detail-extra">健康连接保持原状。后台等待时长可调，实际保留时间仍受 iOS 系统限制。</p></article>
+<article><h3>连接状态，看得明白。</h3><p>手动选择远端分辨率，在紧凑统计面板中查看 Codec、Chroma、FPS、Speed 与 Delay。</p><p class="detail-extra">远端桌面与解码画面尺寸分别显示，连接状态一目了然。</p></article>
+</div></section>
+<section class="open-source" id="open-source" aria-labelledby="source-title"><div class="wrap source-layout"><h2 id="source-title">基于 RustDesk，<br>继续把 iOS 做好。</h2><div><p>SwiftRust 是独立修改版本，沿用 RustDesk 的远程连接核心，以 AGPL-3.0 延续开源。</p><div class="source-actions"><a class="source-link" href="https://github.com/AlbertOneYuan/SwiftRust" target="_blank" rel="noopener noreferrer">GitHub 项目仓库</a><button class="source-link" id="open-about">开源说明</button></div></div></div></section>
+</main>
+<footer class="footer wrap"><a class="brand" href="#"><img src="assets/swiftrust.png" width="36" height="36" alt=""><span>SwiftRust</span></a><p>独立项目 · 非 RustDesk 官方版本</p></footer>
+<dialog id="about-dialog" aria-labelledby="about-title"><div class="dialog-header"><h2 id="about-title">在原有基础上，继续改进。</h2><button class="close-dialog" aria-label="关闭开源说明">×</button></div><p>SwiftRust 基于 RustDesk 开发，以 SwiftUI / UIKit 重做 iOS 前端，新增触控板与新直接触控并保留原有手势，优化快捷键盘、多标签终端、文件传输、多窗口与连接入口，并集成应用内 Tailscale。RustDesk 原作者及贡献者的版权与许可予以保留。</p><p>项目采用 GNU AGPL v3。第三方组件保留各自许可，包括终端组件 SwiftTerm 与内嵌 Tailscale；完整声明和依赖核查记录随源码提供。</p><div class="source-pending"><strong>初始版本准备中</strong><p>项目空仓库已创建，源码尚未上传。当前页面用于介绍体验提升，尚未开放应用下载；后续发布将提供对应版本源码。</p></div><div class="legal-links"><a href="https://github.com/AlbertOneYuan/SwiftRust" target="_blank" rel="noopener noreferrer">SwiftRust 项目仓库</a><a href="https://github.com/rustdesk/rustdesk" target="_blank" rel="noopener noreferrer">RustDesk 上游项目</a><a href="AGPL-3.0.txt" target="_blank" rel="noopener">AGPL-3.0 全文</a></div></dialog>
+<dialog id="screenshot-dialog" aria-labelledby="screenshot-title"><div class="dialog-header"><h2 id="screenshot-title">Duo 实机截图</h2><button class="close-screenshot" aria-label="关闭截图">×</button></div><img id="expanded-screenshot" alt=""></dialog>
+<script src="app.js"></script>
+</body></html>

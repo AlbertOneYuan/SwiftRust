@@ -950,6 +950,11 @@ class _RemotePageState extends State<RemotePage> with WidgetsBindingObserver {
             padding: EdgeInsets.symmetric(vertical: 10),
             child: GestureHelp(
               touchMode: gFFI.ffiModel.touchMode,
+              trackpadMode: gFFI.ffiModel.trackpadMode,
+              onTrackpadModeChange: (enabled) {
+                gFFI.ffiModel.setTrackpadMode(enabled);
+                setState(() {});
+              },
               onTouchModeChange: (t) {
                 gFFI.ffiModel.toggleTouchMode();
                 final v = gFFI.ffiModel.touchMode ? 'Y' : 'N';
@@ -1257,6 +1262,21 @@ class CursorPaint extends StatelessWidget {
     }
     if (image == null) {
       return Offstage();
+    }
+
+    if (isIOS && ffiModel.trackpadMode && !ffiModel.touchMode) {
+      final longestSide =
+          image.width > image.height ? image.width : image.height;
+      final cursorScale = 28.0 / longestSide;
+      final adjust = c.getAdjustY();
+      return CustomPaint(
+        painter: ImagePainter(
+          image: image,
+          x: (m.x * s + c.x) / cursorScale - hotx,
+          y: (m.y * s + c.y + adjust) / cursorScale - hoty,
+          scale: cursorScale,
+        ),
+      );
     }
 
     final minSize = 12.0;

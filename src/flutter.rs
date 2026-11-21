@@ -614,6 +614,8 @@ impl FlutterHandler {
                 }
             }
             if push {
+                #[cfg(target_os = "ios")]
+                crate::platform::ios_native::event(sid, &out);
                 if let Some(stream) = &session.event_stream {
                     stream.add(EventToUI::Event(out.clone()));
                 }
@@ -673,6 +675,13 @@ impl FlutterHandler {
 impl InvokeUiSession for FlutterHandler {
     // On the event stream, so that it keeps its order with the cursor_id events around it.
     fn set_cursor_data(&self, cd: CursorData) {
+        #[cfg(target_os = "ios")]
+        if let Ok(handlers) = self.session_handlers.read() {
+            let event = json!({"name": "native_cursor", "id": cd.id.to_string()}).to_string();
+            for sid in handlers.keys() {
+                crate::platform::ios_native::event(sid, &event);
+            }
+        }
         let colors = cd.colors.to_vec();
         for session in self.session_handlers.read().unwrap().values() {
             if let Some(stream) = &session.event_stream {
@@ -1208,6 +1217,10 @@ impl InvokeUiSession for FlutterHandler {
 impl FlutterHandler {
     #[inline]
     fn on_rgba_soft_render(&self, display: usize, rgba: &mut scrap::ImageRgb) {
+        #[cfg(target_os = "ios")]
+        if let Ok(handlers) = self.session_handlers.read() {
+            if crate::platform::ios_native::frame(handlers.keys(), display, rgba) { return; }
+        }
         // If the current rgba is not fetched by flutter, i.e., is valid.
         // We give up sending a new event to flutter.
         let mut rgba_write_lock = self.display_rgbas.write().unwrap();
@@ -1437,6 +1450,21 @@ pub fn session_start_(
     } else {
         bail!("No session with peer id {}", id)
     }
+}
+
+#[cfg(target_os = "ios")]
+pub(crate) fn native_start(session_id: SessionID) -> ResultType<()> {
+    let session = sessions::get_session_by_session_id(&session_id)
+        .ok_or_else(|| anyhow!("Native session not found"))?;
+    let session = (*session).clone();
+    std::thread::spawn(move || {
+        let round = match session.connection_round_state.lock() {
+            Ok(mut state) => state.new_round(),
+            Err(_) => return,
+        };
+        io_loop(session, round);
+    });
+    Ok(())
 }
 
 #[inline]

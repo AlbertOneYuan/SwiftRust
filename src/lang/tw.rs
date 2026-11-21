@@ -827,5 +827,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("Request approval", "請求批准"),
         ("Forever", "永久"),
         ("username-login-disabled-oidc-unavailable", "使用者名稱和密碼登入已停用，且沒有可用的 OIDC 登入方式。"),
+        ("Trackpad mode", "觸控板模式"),
+        ("trackpad_gestures_tip", "單指移動游標，輕點左鍵；雙指捲動，雙指輕點右鍵；雙指捏合縮放畫布；長按後移動以拖曳，放開釋放。"),
     ].iter().cloned().collect();
 }

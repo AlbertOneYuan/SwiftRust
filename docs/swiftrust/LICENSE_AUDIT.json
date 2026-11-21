@@ -1,0 +1,1285 @@
+{
+  "reviewed_at": "2026-11-20",
+  "scope": "The original 46 missing-root-license entries. License evidence review, not a complete binary compliance certification.",
+  "entries": [
+    {
+      "name": "alloc-stdlib",
+      "version": "0.2.2",
+      "declared_license": "BSD-3-Clause",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": false,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/dropbox/rust-alloc-no-stdlib/6032b6a9b20e03737135c55a0270ccffcc1438ef/LICENSE",
+          "file": "docs/swiftrust/license-evidence/alloc-stdlib/LICENSE",
+          "sha256": "c0c56f26d9c051cac4d200c34c84e7ae9aaa853e01a982a1df08b09931e518ae",
+          "revision": "6032b6a9b20e03737135c55a0270ccffcc1438ef"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/alloc-stdlib/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/alloc-stdlib/0.2.2",
+          "sha256": "6f9e548b53d4a84c8c6a9c4c671ce5598df1847c074a784f932369150a85da63",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "asn1-rs-impl",
+      "version": "0.2.0",
+      "declared_license": "MIT/Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rusticata/asn1-rs/a20e5f7319c896737ad0f2557037817b91ad854f/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/asn1-rs-impl/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "a20e5f7319c896737ad0f2557037817b91ad854f"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rusticata/asn1-rs/a20e5f7319c896737ad0f2557037817b91ad854f/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/asn1-rs-impl/LICENSE-MIT",
+          "sha256": "a5c61b93b6ee1d104af9920cf020ff3c7efe818e31fe562c72261847a728f513",
+          "revision": "a20e5f7319c896737ad0f2557037817b91ad854f"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/asn1-rs-impl/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/asn1-rs-impl/0.2.0",
+          "sha256": "f4d839a0543fac286eb3be3b6c56cb75bb5910f3cb8a98f44a448ff36a8e50ec",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "async-compression",
+      "version": "0.4.32",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/Nullus157/async-compression/b79f66d40697ab7dadf791a416ab2ba15cccc3a3/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/async-compression/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "b79f66d40697ab7dadf791a416ab2ba15cccc3a3"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Nullus157/async-compression/b79f66d40697ab7dadf791a416ab2ba15cccc3a3/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/async-compression/LICENSE-MIT",
+          "sha256": "88d1e3160df48926ad3310a8ec5699b502889565908f1be7e77cd21282c7a709",
+          "revision": "b79f66d40697ab7dadf791a416ab2ba15cccc3a3"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/async-compression/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/async-compression/0.4.32",
+          "sha256": "6e808d0eb0dd82d463c8b3572b365df6639f705e082fbec0676c0a3a48742620",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "base",
+      "version": "0.1.0",
+      "declared_license": null,
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "project-scope-license",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/base/RustDesk-LICENCE.txt",
+          "url": "https://github.com/rustdesk/rustdesk/blob/669cb8ac62aa20d3626395877d7dd0357aec7ed2/LICENCE",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "revision": "669cb8ac62aa20d3626395877d7dd0357aec7ed2"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/base/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "0efe0bf01a1b5eff3824c7fa0ed9ed4130ac2535c93ebae790f9cef0a47b1d44",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "RustDesk 主仓库内模块，Cargo.toml 未单独声明 license；保留所属项目根目录 AGPL v3，不能把缺少每个 crate 的独立 LICENSE 误判为无许可证。此结论不覆盖另外的 Git 子模块或第三方代码。"
+    },
+    {
+      "name": "clipboard",
+      "version": "0.1.0",
+      "declared_license": null,
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": false,
+      "status": "project-scope-license",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/clipboard/RustDesk-LICENCE.txt",
+          "url": "https://github.com/rustdesk/rustdesk/blob/669cb8ac62aa20d3626395877d7dd0357aec7ed2/LICENCE",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "revision": "669cb8ac62aa20d3626395877d7dd0357aec7ed2"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/clipboard/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "a18508173e24624716eb5bdff4f0a3feb75d8123fad6195faa28ecc80e707f44",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "RustDesk 主仓库内模块，Cargo.toml 未单独声明 license；保留所属项目根目录 AGPL v3，不能把缺少每个 crate 的独立 LICENSE 误判为无许可证。此结论不覆盖另外的 Git 子模块或第三方代码。"
+    },
+    {
+      "name": "compression-codecs",
+      "version": "0.4.31",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/Nullus157/async-compression/b79f66d40697ab7dadf791a416ab2ba15cccc3a3/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/compression-codecs/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "b79f66d40697ab7dadf791a416ab2ba15cccc3a3"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Nullus157/async-compression/b79f66d40697ab7dadf791a416ab2ba15cccc3a3/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/compression-codecs/LICENSE-MIT",
+          "sha256": "88d1e3160df48926ad3310a8ec5699b502889565908f1be7e77cd21282c7a709",
+          "revision": "b79f66d40697ab7dadf791a416ab2ba15cccc3a3"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/compression-codecs/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/compression-codecs/0.4.31",
+          "sha256": "00a5d6452b05deeb262b4be5505537e1de61a339c8afb2994eaaaa7988fe3e25",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "compression-core",
+      "version": "0.4.29",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/Nullus157/async-compression/44383cee94fec7276c0dc08dd73f8eb4a93b80ba/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/compression-core/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "44383cee94fec7276c0dc08dd73f8eb4a93b80ba"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Nullus157/async-compression/44383cee94fec7276c0dc08dd73f8eb4a93b80ba/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/compression-core/LICENSE-MIT",
+          "sha256": "88d1e3160df48926ad3310a8ec5699b502889565908f1be7e77cd21282c7a709",
+          "revision": "44383cee94fec7276c0dc08dd73f8eb4a93b80ba"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/compression-core/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/compression-core/0.4.29",
+          "sha256": "f2fed23bb460b92fb047ed4703375b4e77424341e8721d993c7695c802e582dc",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "crc-catalog",
+      "version": "2.4.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-packaged-nested-text",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/crc-catalog/LICENSES__Apache-2.0.txt",
+          "url": "https://docs.rs/crate/crc-catalog/2.4.0/source/LICENSES/Apache-2.0.txt",
+          "sha256": "d3cdb764b98283ee7c3a3cea8d374e2a2957322374378d1f3263f4d512741fc3"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/crc-catalog/LICENSES__MIT.txt",
+          "url": "https://docs.rs/crate/crc-catalog/2.4.0/source/LICENSES/MIT.txt",
+          "sha256": "5ef8fcfb6cccec8fcae043c834099a60c8b7406408db576e026d2b7e67dc5cf5"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/crc-catalog/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/crc-catalog/2.4.0",
+          "sha256": "2ce61392e0a3ee40c2e3075e247f3e74419df546bbf4bd80f0eef021d234a763",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "原发布包的 LICENSES/ 目录已有原文；初版扫描器只检查根目录文件而漏报。保留其 MIT、Apache 2.0 与存在的 CC0 文件。"
+    },
+    {
+      "name": "dart-sys",
+      "version": "4.1.5",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/dart-sys/dart-sys/c9329430a5a8e3828cf59600babe7896326c7c44/LICENSE-APACHE-2.0.md",
+          "file": "docs/swiftrust/license-evidence/dart-sys/LICENSE-APACHE-2.0.md",
+          "sha256": "9c7a58ef39c896d7cc48e18c0a38eb570fc7cecb15a656101d399e367da800a2",
+          "revision": "c9329430a5a8e3828cf59600babe7896326c7c44"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dart-sys/dart-sys/c9329430a5a8e3828cf59600babe7896326c7c44/LICENSE-MIT.md",
+          "file": "docs/swiftrust/license-evidence/dart-sys/LICENSE-MIT.md",
+          "sha256": "a6b742d988bc83c6182193ca4e5abf2dbb67e929817fc94f5ed6e9f49b803f29",
+          "revision": "c9329430a5a8e3828cf59600babe7896326c7c44"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dart-sys/dart-sys/c9329430a5a8e3828cf59600babe7896326c7c44/LICENSE.md",
+          "file": "docs/swiftrust/license-evidence/dart-sys/LICENSE.md",
+          "sha256": "a8e681b06a00b38be7d345ffa7671b80f9ef770192b8c0522d5c839e31654de1",
+          "revision": "c9329430a5a8e3828cf59600babe7896326c7c44"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dart-sys/dart-sys/c9329430a5a8e3828cf59600babe7896326c7c44/dart-sys/dart-sdk/LICENSE",
+          "file": "docs/swiftrust/license-evidence/dart-sys/dart-sys__dart-sdk__LICENSE",
+          "sha256": "2cfa3ee8e7512e6d44c854b986510810fadc815f93f890373b3a81c1b6ccd256",
+          "revision": "c9329430a5a8e3828cf59600babe7896326c7c44"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dart-sys/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dart-sys/4.1.5",
+          "sha256": "4c9212bf6ccee93ac1c01ced31946aed0cc0fa7f571ac2929e559741ed2e7c8b",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。 同时保留嵌套 Dart SDK / 音频 stream 的 BSD 声明，外层 MIT/Apache 许可不能替代它。"
+    },
+    {
+      "name": "dasp",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp/0.11.0",
+          "sha256": "357daf06ee71321926ccd60867a6bab3e6065f2ef1d3b311d1c3bc77f1e4580a",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_envelope",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_envelope/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_envelope/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_envelope/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_envelope/0.11.0",
+          "sha256": "22e4c0b257181054980103b354130820714d7717a7887a185cc9bec3399f9f17",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_frame",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_frame/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_frame/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_frame/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_frame/0.11.0",
+          "sha256": "681c76caa67b5875e4f9f68d72d05d35ef7f48b99137e00303048280efa18ff2",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_interpolate",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_interpolate/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_interpolate/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_interpolate/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_interpolate/0.11.0",
+          "sha256": "ff3413493552a3d01167820f5ece379c0a274b2f2cba0ec44dba361a141e7ed2",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_peak",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_peak/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_peak/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_peak/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_peak/0.11.0",
+          "sha256": "5b48f2de16bb2793c2418794d846c2ba59f8edbdaab4e8e96764d25bff3b0309",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_ring_buffer",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/97c3bb9b2363c0b46ac1633858bf1054fd02a980/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_ring_buffer/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "97c3bb9b2363c0b46ac1633858bf1054fd02a980"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/97c3bb9b2363c0b46ac1633858bf1054fd02a980/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_ring_buffer/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "97c3bb9b2363c0b46ac1633858bf1054fd02a980"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_ring_buffer/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_ring_buffer/0.11.0",
+          "sha256": "940191c272d41820a52567bdb9dc149b4f39b42dfbfba38b4ea4f87327fd5ef5",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_rms",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_rms/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_rms/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_rms/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_rms/0.11.0",
+          "sha256": "702a0f771f18b642af9299d9c29eab432ab72b046a6de7f377ad99e4f16de146",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_sample",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/sample/97c3bb9b2363c0b46ac1633858bf1054fd02a980/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_sample/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "97c3bb9b2363c0b46ac1633858bf1054fd02a980"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/sample/97c3bb9b2363c0b46ac1633858bf1054fd02a980/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_sample/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "97c3bb9b2363c0b46ac1633858bf1054fd02a980"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_sample/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_sample/0.11.0",
+          "sha256": "a9debe8da6eca434f82d04bc9ba0df2b84a5ae18b1981ecc7d0781a3c6d5bab3",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_signal",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_signal/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_signal/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_signal/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_signal/0.11.0",
+          "sha256": "99bebf7b288c18c83085db562ca82e6199d41d58f8064ce3f781342f977ff16f",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_slice",
+      "version": "0.11.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_slice/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_slice/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "221b81038c528bf3fc364a8ab5cc4b2e52f7dbfc"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_slice/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_slice/0.11.0",
+          "sha256": "b2fc24274449d35e85a1a50940b1bdc0a126250b9ac74c0cba5bf7101384dd4e",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dasp_window",
+      "version": "0.11.1",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/e4d535324f8b6c83d16c4f006a9ba3f07f3f147d/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/dasp_window/LICENSE-APACHE",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "revision": "e4d535324f8b6c83d16c4f006a9ba3f07f3f147d"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustaudio/dasp/e4d535324f8b6c83d16c4f006a9ba3f07f3f147d/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/dasp_window/LICENSE-MIT",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "revision": "e4d535324f8b6c83d16c4f006a9ba3f07f3f147d"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dasp_window/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dasp_window/0.11.1",
+          "sha256": "94b156ae331f96d6cf702f3ef63539be90f1c80b3837afdb88607ddab7a0cec6",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "dlopen_derive",
+      "version": "0.1.4",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-source-match",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/dlopen_derive/LICENSE",
+          "url": "https://raw.githubusercontent.com/szymonwieloch/rust-dlopen/26b70292744db1052403378d4a01075b6171e3d1/LICENSE",
+          "sha256": "062e40ee707f6ab1ca0955624ccfa78d666250a2e821f892705f455cf70dc28a",
+          "revision": "26b70292744db1052403378d4a01075b6171e3d1"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dlopen_derive/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/dlopen_derive/0.1.4",
+          "sha256": "958588360dfb7e4419b26e7268268539d0ed02b5fd7f79cee3da9633f46d1a7c",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "原发布记录缺少可访问的精确源码提交，已对比另一上游提交中的全部 5 个 Rust 源文件（包含 build.rs 如有），逐字节相同，再从该仓库根目录补回许可证；不是直接套用最新版声明。",
+      "source_match": {
+        "repo": "szymonwieloch/rust-dlopen",
+        "sha": "26b70292744db1052403378d4a01075b6171e3d1",
+        "crate_path": "rust-dlopen-derive/",
+        "same": [
+          "src/lib.rs",
+          "src/wrapper.rs",
+          "src/api.rs",
+          "src/common.rs",
+          "src/multi_api.rs"
+        ],
+        "different": []
+      }
+    },
+    {
+      "name": "dylib_virtual_display",
+      "version": "0.1.0",
+      "declared_license": null,
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": false,
+      "status": "project-scope-license",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/dylib_virtual_display/RustDesk-LICENCE.txt",
+          "url": "https://github.com/rustdesk/rustdesk/blob/669cb8ac62aa20d3626395877d7dd0357aec7ed2/LICENCE",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "revision": "669cb8ac62aa20d3626395877d7dd0357aec7ed2"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/dylib_virtual_display/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "e0b97e29b7420f3d464902dbfb42b1af32ce1971d578ca4a629fd5d880490576",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "RustDesk 主仓库内模块，Cargo.toml 未单独声明 license；保留所属项目根目录 AGPL v3，不能把缺少每个 crate 的独立 LICENSE 误判为无许可证。此结论不覆盖另外的 Git 子模块或第三方代码。"
+    },
+    {
+      "name": "enum-map",
+      "version": "2.7.3",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-packaged-nested-text",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map/LICENSES__Apache-2.0.txt",
+          "url": "https://docs.rs/crate/enum-map/2.7.3/source/LICENSES/Apache-2.0.txt",
+          "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map/LICENSES__CC0-1.0.txt",
+          "url": "https://docs.rs/crate/enum-map/2.7.3/source/LICENSES/CC0-1.0.txt",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map/LICENSES__MIT.txt",
+          "url": "https://docs.rs/crate/enum-map/2.7.3/source/LICENSES/MIT.txt",
+          "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/enum-map/2.7.3",
+          "sha256": "e5ed3f9fc81b50262aa3870fe1db0b75e20176013b6840ef8a6dc84996d34249",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "原发布包的 LICENSES/ 目录已有原文；初版扫描器只检查根目录文件而漏报。保留其 MIT、Apache 2.0 与存在的 CC0 文件。"
+    },
+    {
+      "name": "enum-map-derive",
+      "version": "0.17.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-packaged-nested-text",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map-derive/LICENSES__Apache-2.0.txt",
+          "url": "https://docs.rs/crate/enum-map-derive/0.17.0/source/LICENSES/Apache-2.0.txt",
+          "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map-derive/LICENSES__CC0-1.0.txt",
+          "url": "https://docs.rs/crate/enum-map-derive/0.17.0/source/LICENSES/CC0-1.0.txt",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map-derive/LICENSES__MIT.txt",
+          "url": "https://docs.rs/crate/enum-map-derive/0.17.0/source/LICENSES/MIT.txt",
+          "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/enum-map-derive/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/enum-map-derive/0.17.0",
+          "sha256": "5e08dfccd836c8a3927a47d8cdc6a9523f8fa72c237d3dd3040118d2dc5ef928",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "原发布包的 LICENSES/ 目录已有原文；初版扫描器只检查根目录文件而漏报。保留其 MIT、Apache 2.0 与存在的 CC0 文件。"
+    },
+    {
+      "name": "flutter_rust_bridge",
+      "version": "1.80.1",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fzyzcjy/flutter_rust_bridge/9904bc6ce4a9433c035141d931f7bc69c83655ab/LICENSE",
+          "file": "docs/swiftrust/license-evidence/flutter_rust_bridge/LICENSE",
+          "sha256": "d56622df159a9967bd6a16c726823a2cbe8546c1f18437617283c9da27000390",
+          "revision": "9904bc6ce4a9433c035141d931f7bc69c83655ab"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/flutter_rust_bridge/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/flutter_rust_bridge/1.80.1",
+          "sha256": "9466527daafe8d1f7eb431e77f26f80d740993434c2f458cc178f46aafc316fc",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "flutter_rust_bridge_macros",
+      "version": "1.82.6",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fzyzcjy/flutter_rust_bridge/1a5b35a45b7ddca36abfa2294174fc26e1806b36/LICENSE",
+          "file": "docs/swiftrust/license-evidence/flutter_rust_bridge_macros/LICENSE",
+          "sha256": "d56622df159a9967bd6a16c726823a2cbe8546c1f18437617283c9da27000390",
+          "revision": "1a5b35a45b7ddca36abfa2294174fc26e1806b36"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/flutter_rust_bridge_macros/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/flutter_rust_bridge_macros/1.82.6",
+          "sha256": "0509bb5cc1bf812fa4401d0345726117cf4a4735897732628ec219cbdda617ae",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "fon",
+      "version": "0.6.0",
+      "declared_license": "Apache-2.0 OR MIT OR BSL-1.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/ardaku/fon/0da249a64100e3eb8574aafa4308e938f1660285/LICENSE_APACHE_2_0.txt",
+          "file": "docs/swiftrust/license-evidence/fon/LICENSE_APACHE_2_0.txt",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+          "revision": "0da249a64100e3eb8574aafa4308e938f1660285"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ardaku/fon/0da249a64100e3eb8574aafa4308e938f1660285/LICENSE_BOOST_1_0.txt",
+          "file": "docs/swiftrust/license-evidence/fon/LICENSE_BOOST_1_0.txt",
+          "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+          "revision": "0da249a64100e3eb8574aafa4308e938f1660285"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ardaku/fon/0da249a64100e3eb8574aafa4308e938f1660285/LICENSE_MIT.txt",
+          "file": "docs/swiftrust/license-evidence/fon/LICENSE_MIT.txt",
+          "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+          "revision": "0da249a64100e3eb8574aafa4308e938f1660285"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ardaku/fon/0da249a64100e3eb8574aafa4308e938f1660285/src/stream/LICENSE.BSD-3",
+          "file": "docs/swiftrust/license-evidence/fon/src__stream__LICENSE.BSD-3",
+          "sha256": "671bb5d8fd3c6b05a2e831d90f978ac27965c92bd8ea6d16b3df76e3440c0e9f",
+          "revision": "0da249a64100e3eb8574aafa4308e938f1660285"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/fon/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/fon/0.6.0",
+          "sha256": "9b419b5c71a1e6bcf7f9651299586be7dae0d45486a07ce18c3e0991eff9fc0f",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。 同时保留嵌套 Dart SDK / 音频 stream 的 BSD 声明，外层 MIT/Apache 许可不能替代它。"
+    },
+    {
+      "name": "hbb_common",
+      "version": "0.1.0",
+      "declared_license": null,
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "pending",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/hbb_common/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "b0adebdea944369de82743cb2baf03150213a6c3e62d1adeefe0eb21ca2d1971",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "独立 Git 子模块 fae47e024dd83cef6aaecde0aa7d11731df11649 的根目录与 Cargo.toml 均未提供明确许可证。不能仅因它位于 RustDesk 项目目录就替上游授权；需要核实该提交的授权范围或取得维护者说明。"
+    },
+    {
+      "name": "phf",
+      "version": "0.7.24",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/sfackler/rust-phf/1287414b1302d2d717c5f4be81accf4c12ccad48/LICENSE",
+          "file": "docs/swiftrust/license-evidence/phf/LICENSE",
+          "sha256": "d8870d5e2ab20fc50915b711c5aa7588131c9abcc1bcb980da1efd7486522a46",
+          "revision": "1287414b1302d2d717c5f4be81accf4c12ccad48"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/phf/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/phf/0.7.24",
+          "sha256": "39f617956d614529a2cdf03e2cc27bd55b2ac345a380deca7b8159c8b190b431",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "phf_codegen",
+      "version": "0.7.24",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/sfackler/rust-phf/e235374a7c11721ed7313977c89d5b75ad38c840/LICENSE",
+          "file": "docs/swiftrust/license-evidence/phf_codegen/LICENSE",
+          "sha256": "d8870d5e2ab20fc50915b711c5aa7588131c9abcc1bcb980da1efd7486522a46",
+          "revision": "e235374a7c11721ed7313977c89d5b75ad38c840"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/phf_codegen/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/phf_codegen/0.7.24",
+          "sha256": "11a848c2c4d2e6eccdcb93c421a42b0c19af1c732ac7014b96e63a0f1be079e9",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "phf_generator",
+      "version": "0.7.24",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/sfackler/rust-phf/e235374a7c11721ed7313977c89d5b75ad38c840/LICENSE",
+          "file": "docs/swiftrust/license-evidence/phf_generator/LICENSE",
+          "sha256": "d8870d5e2ab20fc50915b711c5aa7588131c9abcc1bcb980da1efd7486522a46",
+          "revision": "e235374a7c11721ed7313977c89d5b75ad38c840"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/phf_generator/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/phf_generator/0.7.24",
+          "sha256": "72dc3263b39ee01b4e80c2b186e57ae75e7452b7c6b8e156119298e94e523fe1",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "phf_shared",
+      "version": "0.7.24",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/sfackler/rust-phf/e235374a7c11721ed7313977c89d5b75ad38c840/LICENSE",
+          "file": "docs/swiftrust/license-evidence/phf_shared/LICENSE",
+          "sha256": "d8870d5e2ab20fc50915b711c5aa7588131c9abcc1bcb980da1efd7486522a46",
+          "revision": "e235374a7c11721ed7313977c89d5b75ad38c840"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/phf_shared/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/phf_shared/0.7.24",
+          "sha256": "23815d0886b382ced8d4c8a6cda9e064e25ddcc7e7f8e108f6fc0399adc1abef",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "quest",
+      "version": "0.3.0",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "pending",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/quest/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/quest/0.3.0",
+          "sha256": "ef0a7a4e7f7f5adfdc220d1c5cbe31e44d4b6f8f8b58e37cea31a886c602acef",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "发布包 Cargo.toml 声明 MIT，但未带 LICENSE/版权通知，原 quadrupleslap/quest 上游仓库目前返回 404。保留元数据证据；尚未找回该发布版本的原始许可通知，不编造年份或版权人。"
+    },
+    {
+      "name": "remote_printer",
+      "version": "0.1.0",
+      "declared_license": null,
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": false,
+      "status": "project-scope-license",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/remote_printer/RustDesk-LICENCE.txt",
+          "url": "https://github.com/rustdesk/rustdesk/blob/669cb8ac62aa20d3626395877d7dd0357aec7ed2/LICENCE",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "revision": "669cb8ac62aa20d3626395877d7dd0357aec7ed2"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/remote_printer/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "ceab6759bac6295443b874def87c2dc634438dc32eb7e6215a1fffdf7401b6fe",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "RustDesk 主仓库内模块，Cargo.toml 未单独声明 license；保留所属项目根目录 AGPL v3，不能把缺少每个 crate 的独立 LICENSE 误判为无许可证。此结论不覆盖另外的 Git 子模块或第三方代码。"
+    },
+    {
+      "name": "repng",
+      "version": "0.2.2",
+      "declared_license": "MIT",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "pending",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/repng/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/repng/0.2.2",
+          "sha256": "57447aa22d101b6bbe0fd514765ec858c13755f4bdff6e107002022f9fc47bf9",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "发布包 Cargo.toml 声明 MIT，但未带 LICENSE/版权通知，原 quadrupleslap/repng 上游仓库目前返回 404。保留元数据证据；尚未找回该发布版本的原始许可通知，不编造年份或版权人。"
+    },
+    {
+      "name": "rustdesk-portable-packer",
+      "version": "1.5.3",
+      "declared_license": null,
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": false,
+      "status": "project-scope-license",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/rustdesk-portable-packer/RustDesk-LICENCE.txt",
+          "url": "https://github.com/rustdesk/rustdesk/blob/669cb8ac62aa20d3626395877d7dd0357aec7ed2/LICENCE",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "revision": "669cb8ac62aa20d3626395877d7dd0357aec7ed2"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/rustdesk-portable-packer/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "5be1eba119adcaff9903c4ebb32e3795e0cd7b0e4d7cabce86d9cf4fc6114843",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "RustDesk 主仓库内模块，Cargo.toml 未单独声明 license；保留所属项目根目录 AGPL v3，不能把缺少每个 crate 的独立 LICENSE 误判为无许可证。此结论不覆盖另外的 Git 子模块或第三方代码。"
+    },
+    {
+      "name": "scrap",
+      "version": "0.5.0",
+      "declared_license": "MIT",
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "pending",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/scrap/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "cadd141b290f10b8c0fa73795d740e33a32f35a3e4fc41eddf17492fdb6cb7dd",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "RustDesk 内的 fork 的 Cargo.toml 声明 MIT，README 明确源自 quadrupleslap/scrap。原上游当前快照也未附独立 LICENSE。不能用 RustDesk 根 AGPL 替代其继承的 MIT 通知；需核实/补回原始版权许可通知。"
+    },
+    {
+      "name": "stunclient",
+      "version": "0.4.1",
+      "declared_license": "MIT/Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "pending",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/stunclient/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/stunclient/0.4.1",
+          "sha256": "0583e2d58898e88180d9c447f2d17ac7d5d397770b5b65819f240603057367c7",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "锁定提交 ef35ef84347ce3a504c0f159c6b46c3e3234ecc5 的 Cargo.toml 声明 MIT/Apache-2.0，但根目录及源码树未找到独立许可通知。许可证选择已知，原始版权通知仍需核对；未擅自为作者生成许可声明。"
+    },
+    {
+      "name": "system-configuration",
+      "version": "0.5.1",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/mullvad/system-configuration-rs/56e415eb24b0897bef96a9a38fe7883cfbe2bb94/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/system-configuration/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "56e415eb24b0897bef96a9a38fe7883cfbe2bb94"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mullvad/system-configuration-rs/56e415eb24b0897bef96a9a38fe7883cfbe2bb94/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/system-configuration/LICENSE-MIT",
+          "sha256": "35b228510156c3d7bf94b129c81b7e3cc72d347586e632be15686232b342562a",
+          "revision": "56e415eb24b0897bef96a9a38fe7883cfbe2bb94"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/system-configuration/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/system-configuration/0.5.1",
+          "sha256": "9296e9656b8beb27ca4777ac801d37991b00ec3b33518b2b15ad30d39cdaa1ea",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "system-configuration-sys",
+      "version": "0.5.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-source-match",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/system-configuration-sys/LICENSE-APACHE",
+          "url": "https://raw.githubusercontent.com/mullvad/system-configuration-rs/56e415eb24b0897bef96a9a38fe7883cfbe2bb94/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "56e415eb24b0897bef96a9a38fe7883cfbe2bb94"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/system-configuration-sys/LICENSE-MIT",
+          "url": "https://raw.githubusercontent.com/mullvad/system-configuration-rs/56e415eb24b0897bef96a9a38fe7883cfbe2bb94/LICENSE-MIT",
+          "sha256": "35b228510156c3d7bf94b129c81b7e3cc72d347586e632be15686232b342562a",
+          "revision": "56e415eb24b0897bef96a9a38fe7883cfbe2bb94"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/system-configuration-sys/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/system-configuration-sys/0.5.0",
+          "sha256": "c2224f1bf1bdd1c25cd10560289f436fb67b75ebb19cca5733ac36afbdff2908",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "原发布记录缺少可访问的精确源码提交，已对比另一上游提交中的全部 8 个 Rust 源文件（包含 build.rs 如有），逐字节相同，再从该仓库根目录补回许可证；不是直接套用最新版声明。",
+      "source_match": {
+        "repo": "mullvad/system-configuration-rs",
+        "sha": "56e415eb24b0897bef96a9a38fe7883cfbe2bb94",
+        "crate_path": "system-configuration-sys/",
+        "same": [
+          "build.rs",
+          "src/preferences.rs",
+          "src/dynamic_store_copy_specific.rs",
+          "src/lib.rs",
+          "src/schema_definitions.rs",
+          "src/network_configuration.rs",
+          "src/network_reachability.rs",
+          "src/dynamic_store.rs"
+        ],
+        "different": []
+      }
+    },
+    {
+      "name": "target_build_utils",
+      "version": "0.3.1",
+      "declared_license": "ISC/Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "pending",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/target_build_utils/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/target_build_utils/0.3.1",
+          "sha256": "91fb05f84fda62f2f1f6271f91077fc860349d17289a3056892419189f948818",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "发布包声明 ISC/Apache-2.0；README 的 License 段却称 llvm_build_utils。当前上游亦未带许可文件。需核实这段引用是否适用于本包及应保留的原始版权许可通知。"
+    },
+    {
+      "name": "virtual_display",
+      "version": "0.1.0",
+      "declared_license": null,
+      "package_source": null,
+      "package_checksum": null,
+      "ios_graph": false,
+      "status": "project-scope-license",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/virtual_display/RustDesk-LICENCE.txt",
+          "url": "https://github.com/rustdesk/rustdesk/blob/669cb8ac62aa20d3626395877d7dd0357aec7ed2/LICENCE",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "revision": "669cb8ac62aa20d3626395877d7dd0357aec7ed2"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/virtual_display/PACKAGE-MANIFEST.toml",
+          "url": "Included in the preserved RustDesk source tree",
+          "sha256": "3c241ec655632a6e6f60a767b8418b6590dd08b851d5a77e58bede2a0fe1beb6",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "RustDesk 主仓库内模块，Cargo.toml 未单独声明 license；保留所属项目根目录 AGPL v3，不能把缺少每个 crate 的独立 LICENSE 误判为无许可证。此结论不覆盖另外的 Git 子模块或第三方代码。"
+    },
+    {
+      "name": "webm",
+      "version": "1.1.0",
+      "declared_license": "MPL-2.0",
+      "package_source": "git+https://github.com/rustdesk-org/rust-webm#d2c4d3ac133c7b0e4c0f656da710b48391981e64",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "reviewed-mpl-conditions",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/webm/MPL-2.0.txt",
+          "url": "https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt",
+          "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/webm/libwebm-LICENSE.TXT",
+          "url": "https://github.com/rustdesk-org/rust-webm/tree/d2c4d3ac133c7b0e4c0f656da710b48391981e64",
+          "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+          "revision": "d2c4d3ac133c7b0e4c0f656da710b48391981e64"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/webm/PACKAGE-MANIFEST.toml",
+          "url": "git+https://github.com/rustdesk-org/rust-webm#d2c4d3ac133c7b0e4c0f656da710b48391981e64",
+          "sha256": "6e6878410ce283fe3fd5682bc9fdb0d7d5484b76ee5c93f7fc93dbf0aa50ad1f",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "锁定提交的 Cargo.toml 明确声明 MPL-2.0；仓库未附 MPL 全文，已补 Mozilla 官方标准原文，并保留 libwebm 的 Google BSD 声明。检查锁定源码未发现 MPL 1.1 来源标记或 Exhibit B 二级许可排除声明。按 MPL 3.3 的条件与 AGPL v3 组合；保留 MPL 通知及适用源码取得方式，不把全部组件统一改写为 AGPL。后续升级需重查。"
+    },
+    {
+      "name": "webm-sys",
+      "version": "1.0.4",
+      "declared_license": "MPL-2.0",
+      "package_source": "git+https://github.com/rustdesk-org/rust-webm#d2c4d3ac133c7b0e4c0f656da710b48391981e64",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "reviewed-mpl-conditions",
+      "evidence": [
+        {
+          "file": "docs/swiftrust/license-evidence/webm-sys/MPL-2.0.txt",
+          "url": "https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt",
+          "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/webm-sys/libwebm-LICENSE.TXT",
+          "url": "https://github.com/rustdesk-org/rust-webm/tree/d2c4d3ac133c7b0e4c0f656da710b48391981e64",
+          "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+          "revision": "d2c4d3ac133c7b0e4c0f656da710b48391981e64"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/webm-sys/PACKAGE-MANIFEST.toml",
+          "url": "git+https://github.com/rustdesk-org/rust-webm#d2c4d3ac133c7b0e4c0f656da710b48391981e64",
+          "sha256": "82eb46a80fe0785c49e97c7b3b605c7bec9097b33ccd9d4ac8f5adcb3c9b95e5",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "锁定提交的 Cargo.toml 明确声明 MPL-2.0；仓库未附 MPL 全文，已补 Mozilla 官方标准原文，并保留 libwebm 的 Google BSD 声明。检查锁定源码未发现 MPL 1.1 来源标记或 Exhibit B 二级许可排除声明。按 MPL 3.3 的条件与 AGPL v3 组合；保留 MPL 通知及适用源码取得方式，不把全部组件统一改写为 AGPL。后续升级需重查。"
+    },
+    {
+      "name": "webrtc",
+      "version": "0.13.0",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "git+https://github.com/rustdesk-org/webrtc?rev=49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63#49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/rustdesk-org/webrtc/49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/webrtc/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rustdesk-org/webrtc/49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/webrtc/LICENSE-MIT",
+          "sha256": "56cc6c08157f4faf70d351b3a7ceac143399d5359a78c180e06dcd0390784f4d",
+          "revision": "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/webrtc/PACKAGE-MANIFEST.toml",
+          "url": "git+https://github.com/rustdesk-org/webrtc?rev=49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63#49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63",
+          "sha256": "7b709a2b64883dbf90adc238eb6f0459dd8f98473862c934da5395fbdab4acb0",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    },
+    {
+      "name": "yasna",
+      "version": "0.5.2",
+      "declared_license": "MIT OR Apache-2.0",
+      "package_source": "registry+https://github.com/rust-lang/crates.io-index",
+      "package_checksum": null,
+      "ios_graph": true,
+      "status": "verified-upstream-text",
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/qnighy/yasna.rs/b7e65f9a4c317494cce2d18ea02b3d6eaaea7985/LICENSE-APACHE",
+          "file": "docs/swiftrust/license-evidence/yasna/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "revision": "b7e65f9a4c317494cce2d18ea02b3d6eaaea7985"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/qnighy/yasna.rs/b7e65f9a4c317494cce2d18ea02b3d6eaaea7985/LICENSE-MIT",
+          "file": "docs/swiftrust/license-evidence/yasna/LICENSE-MIT",
+          "sha256": "2a7df90e60fd5512b8bca35d3ce90e068f21c52d962855053fd1d9e2e7ca0f16",
+          "revision": "b7e65f9a4c317494cce2d18ea02b3d6eaaea7985"
+        },
+        {
+          "file": "docs/swiftrust/license-evidence/yasna/PACKAGE-MANIFEST.toml",
+          "url": "https://crates.io/crates/yasna/0.5.2",
+          "sha256": "63bc1c2f1068769c3d95361fc72fc2e81594a12c9a3f2a36712596297745e0fc",
+          "kind": "manifest"
+        }
+      ],
+      "notes": "许可证文本来自发布包 .cargo_vcs_info.json 指定的提交（Git 依赖则为 Cargo.lock 锁定提交），保留原文。"
+    }
+  ]
+}

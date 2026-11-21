@@ -827,5 +827,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("Request approval", "დამტკიცების მოთხოვნა"),
         ("Forever", "სამუდამოდ"),
         ("username-login-disabled-oidc-unavailable", "მომხმარებლის სახელითა და პაროლით შესვლა გამორთულია და OIDC-ით შესვლის მეთოდები ხელმისაწვდომი არ არის."),
+        ("Trackpad mode", ""),
+        ("trackpad_gestures_tip", ""),
     ].iter().cloned().collect();
 }

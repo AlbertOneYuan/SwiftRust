@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs><linearGradient id="mark" gradientUnits="userSpaceOnUse" x1="340" y1="260" x2="680" y2="750"><stop stop-color="#FFB13B"/><stop offset="1" stop-color="#F4510B"/></linearGradient></defs>
+  <g transform="translate(512 512) scale(1.16) translate(-512 -512)" fill="none" stroke="url(#mark)" stroke-width="68.965517" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 676,336 H 446 C 378,336 336,375 336,427 C 336,480 379,512 446,512 H 578 C 645,512 688,544 688,597 C 688,649 646,688 578,688 H 348"/>
+    <path d="M 616,276 L 680,336 L 616,396"/>
+    <path d="M 408,628 L 344,688 L 408,748"/>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+--- network_configuration.rs.original
++++ network_configuration.rs
+@@ -164,7 +164,12 @@
+                 Some(SCNetworkInterfaceType::IEEE80211)
+             } else if id_is_equal_to(kSCNetworkInterfaceTypeIPSec) {
+                 Some(SCNetworkInterfaceType::IPSec)
+-            } else if id_is_equal_to(kSCNetworkInterfaceTypeIrDA) {
++            } else if {
++                #[cfg(target_os = "ios")]
++                { false }
++                #[cfg(not(target_os = "ios"))]
++                { id_is_equal_to(kSCNetworkInterfaceTypeIrDA) }
++            } {
+                 Some(SCNetworkInterfaceType::IrDA)
+             } else if id_is_equal_to(kSCNetworkInterfaceTypeL2TP) {
+                 Some(SCNetworkInterfaceType::L2TP)

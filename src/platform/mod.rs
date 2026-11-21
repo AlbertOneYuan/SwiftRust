@@ -1,3 +1,6 @@
+#[cfg(target_os = "ios")]
+pub mod ios_native;
+
 #[cfg(target_os = "linux")]
 pub use linux::*;
 #[cfg(target_os = "macos")]

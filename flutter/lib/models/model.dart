@@ -117,6 +117,13 @@ class FfiModel with ChangeNotifier {
   bool? _secure;
   bool? _direct;
   bool _touchMode = false;
+  bool trackpadMode = false;
+
+  void setTrackpadMode(bool enabled) {
+    trackpadMode = enabled;
+    bind.mainSetLocalOption(key: 'ios-trackpad-mode', value: enabled ? 'Y' : 'N');
+    notifyListeners();
+  }
   late VirtualMouseMode virtualMouseMode;
   Timer? _timer;
   Timer? _restartReconnectDelayTimer;
@@ -1409,6 +1416,8 @@ class FfiModel with ChangeNotifier {
       }
     }
     if (isMobile) {
+      trackpadMode = isIOS &&
+          bind.mainGetLocalOption(key: 'ios-trackpad-mode') == 'Y';
       virtualMouseMode.loadOptions();
     }
     if (connType == ConnType.fileTransfer) {

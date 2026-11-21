@@ -1,0 +1,16 @@
+SwiftRust — modified version of RustDesk
+
+Upstream: https://github.com/rustdesk/rustdesk
+Upstream base: 669cb8ac62aa20d3626395877d7dd0357aec7ed2
+RustDesk copyright notices, including Purslane Tech Pte. Ltd. and other contributors, are retained in their original files.
+SwiftRust modifications: Copyright (c) 2026 SwiftRust contributors.
+Modification date: 2026-11-21.
+Project repository: https://github.com/AlbertOneYuan/SwiftRust
+
+The RustDesk-derived combined work is distributed under GNU Affero General Public License version 3 (AGPL-3.0); see LICENCE. Third-party components retain their respective licenses. Nothing here removes upstream license options or notices.
+
+This program comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. You may copy, modify and redistribute it under the license terms.
+
+SwiftRust is an independent modification, not an official RustDesk product. Naming does not grant rights to third-party trademarks.
+
+Corresponding Source URL: NOT YET CONFIGURED. Configure a real version-matched source download before distributing binaries. A link to the unmodified upstream repository is insufficient.

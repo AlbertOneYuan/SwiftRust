@@ -1,0 +1,13 @@
+SwiftRust
+Copyright (c) 2026 SwiftRust contributors.
+SPDX-License-Identifier: AGPL-3.0-only
+
+SwiftRust is a modified version of RustDesk. SwiftRust modifications are
+licensed under the GNU Affero General Public License, version 3.
+Original RustDesk copyright and license notices are retained.
+
+Project: https://github.com/AlbertOneYuan/SwiftRust
+Modified: 2026-11-21
+
+This program is distributed without any warranty, to the extent permitted
+by applicable law. The full license follows.

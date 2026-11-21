@@ -1,0 +1,18 @@
+[package]
+name = "quest"
+description = "Simple command-line user input."
+repository = "https://github.com/quadrupleslap/quest"
+license = "MIT"
+version = "0.3.0"
+authors = ["Ram Kaniyur <quadrupleslap@gmail.com>"]
+
+[dependencies]
+rpassword = "2"
+tempfile = "3"
+cfg-if = "0.1"
+
+[target."cfg(windows)".dependencies]
+winapi = { version = "0.3", features = ["consoleapi", "processenv"] }
+
+[target."cfg(unix)".dependencies]
+termios = "0.3"

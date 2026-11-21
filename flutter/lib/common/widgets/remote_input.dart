@@ -12,6 +12,7 @@ import 'package:flutter_hbb/models/model.dart';
 import 'package:flutter_hbb/models/input_model.dart';
 
 import './gestures.dart';
+import '../../mobile/widgets/trackpad_region.dart';
 
 class RawKeyFocusScope extends StatelessWidget {
   final FocusNode? focusNode;
@@ -119,6 +120,40 @@ class _RawTouchGestureDetectorRegionState
 
   @override
   Widget build(BuildContext context) {
+    if (isIOS && ffiModel.trackpadMode && !handleTouch && !widget.isCamera) {
+      return TrackpadRegion(
+        onMove: (delta, position) {
+          onOneFingerPanUpdate(DragUpdateDetails(
+            delta: delta,
+            globalPosition: position,
+            localPosition: position,
+          ));
+        },
+        onClick: () => inputModel.tap(MouseButtons.left),
+        onDoubleClick: () async {
+          await inputModel.tap(MouseButtons.left);
+          await inputModel.tap(MouseButtons.left);
+        },
+        onSecondaryClick: () => inputModel.tap(MouseButtons.right),
+        onDragDown: () => inputModel.tapDown(MouseButtons.left),
+        onDragUp: () => inputModel.tapUp(MouseButtons.left),
+        onScale: (scale, focalPoint) {
+          if (canvasLocked) return;
+          ffi.canvasModel.updateScale(scale, focalPoint);
+        },
+        onScroll: (x, y) {
+          if (inputModel.isViewOnly || !inputModel.keyboardPerm) return;
+          bind.sessionSendMouse(
+              sessionId: sessionId,
+              msg: json.encode(inputModel.modify({
+                'type': 'wheel',
+                'x': '$x',
+                'y': '$y',
+              })));
+        },
+        child: widget.child,
+      );
+    }
     return RawGestureDetector(
       child: widget.child,
       gestures: makeGestures(context),

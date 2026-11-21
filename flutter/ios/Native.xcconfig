@@ -1,0 +1,9 @@
+RUSTDESK_LIBRARY_DIR = $(PROJECT_DIR)/../../target/aarch64-apple-ios/release
+RUSTDESK_LIBRARY_DIR[sdk=iphonesimulator*] = $(PROJECT_DIR)/../../target/aarch64-apple-ios-sim/debug
+RUSTDESK_PLATFORM_LDFLAGS = -framework SystemConfiguration
+
+// Userspace Tailscale archives built by scripts/ios/build-tailscale.sh.
+SWIFTRUST_TAILSCALE_DIR = $(PROJECT_DIR)/../../.build-swiftrust/tailscale
+SWIFTRUST_TAILSCALE_LIBRARY = $(SWIFTRUST_TAILSCALE_DIR)/libtailscale_ios.a
+SWIFTRUST_TAILSCALE_LIBRARY[sdk=iphonesimulator*] = $(SWIFTRUST_TAILSCALE_DIR)/libtailscale_ios_sim_arm64.a
+OTHER_LDFLAGS = $(RUSTDESK_LIBRARY_DIR)/liblibrustdesk.a $(SWIFTRUST_TAILSCALE_LIBRARY) -lc++ -lz -liconv -lresolv -lsqlite3 -framework AVFoundation -framework AudioToolbox -framework CoreAudio -framework CoreFoundation -framework CoreGraphics -framework CoreMedia -framework CoreVideo -framework Foundation -framework Security -framework SystemConfiguration -framework VideoToolbox -framework Network -framework Metal -framework IOSurface

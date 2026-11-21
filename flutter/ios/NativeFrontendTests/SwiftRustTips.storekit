@@ -1,0 +1,96 @@
+{
+  "identifier": "SwiftRustTips",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1001",
+      "localizations": [
+        {
+          "description": "自愿支持 SwiftRust 开发，不解锁额外功能。",
+          "displayName": "投喂一颗橘子",
+          "locale": "zh_CN"
+        },
+        {
+          "description": "An optional tip for SwiftRust. No feature unlocks.",
+          "displayName": "An Orange Boost",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "swiftrust.airefactor.me.tip.tier1",
+      "referenceName": "An Orange Boost",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "1002",
+      "localizations": [
+        {
+          "description": "自愿支持 SwiftRust 开发，不解锁额外功能。",
+          "displayName": "续一杯灵感",
+          "locale": "zh_CN"
+        },
+        {
+          "description": "An optional tip for SwiftRust. No feature unlocks.",
+          "displayName": "Creative Refill",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "swiftrust.airefactor.me.tip.tier2",
+      "referenceName": "Creative Refill",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "19.99",
+      "familyShareable": false,
+      "internalID": "1003",
+      "localizations": [
+        {
+          "description": "自愿支持 SwiftRust 开发，不解锁额外功能。",
+          "displayName": "给 Bug 放个假",
+          "locale": "zh_CN"
+        },
+        {
+          "description": "An optional tip for SwiftRust. No feature unlocks.",
+          "displayName": "Bug’s Day Off",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "swiftrust.airefactor.me.tip.tier3",
+      "referenceName": "Bug’s Day Off",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "29.90",
+      "familyShareable": false,
+      "internalID": "1004",
+      "localizations": [
+        {
+          "description": "自愿支持 SwiftRust 开发，不解锁额外功能。",
+          "displayName": "给开发者续航",
+          "locale": "zh_CN"
+        },
+        {
+          "description": "An optional tip for SwiftRust. No feature unlocks.",
+          "displayName": "Dev Power-Up",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "swiftrust.airefactor.me.tip.tier4",
+      "referenceName": "Dev Power-Up",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA"
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

@@ -1,0 +1,30 @@
+License evidence review — 2026-11-20
+Original 46 entries: 40 supplemented/reconciled; 6 pending upstream notice or authorization clarification.
+This is not a complete license compatibility or final binary compliance certification.
+See LICENSE_AUDIT.md / LICENSE_AUDIT.json for all 46 decisions, sources and hashes.
+
+hbb_common 0.1.0
+独立 Git 子模块 fae47e024dd83cef6aaecde0aa7d11731df11649 的根目录与 Cargo.toml 均未提供明确许可证。不能仅因它位于 RustDesk 项目目录就替上游授权；需要核实该提交的授权范围或取得维护者说明。
+
+quest 0.3.0
+发布包 Cargo.toml 声明 MIT，但未带 LICENSE/版权通知，原 quadrupleslap/quest 上游仓库目前返回 404。保留元数据证据；尚未找回该发布版本的原始许可通知，不编造年份或版权人。
+
+repng 0.2.2
+发布包 Cargo.toml 声明 MIT，但未带 LICENSE/版权通知，原 quadrupleslap/repng 上游仓库目前返回 404。保留元数据证据；尚未找回该发布版本的原始许可通知，不编造年份或版权人。
+
+scrap 0.5.0
+RustDesk 内的 fork 的 Cargo.toml 声明 MIT，README 明确源自 quadrupleslap/scrap。原上游当前快照也未附独立 LICENSE。不能用 RustDesk 根 AGPL 替代其继承的 MIT 通知；需核实/补回原始版权许可通知。
+
+stunclient 0.4.1
+锁定提交 ef35ef84347ce3a504c0f159c6b46c3e3234ecc5 的 Cargo.toml 声明 MIT/Apache-2.0，但根目录及源码树未找到独立许可通知。许可证选择已知，原始版权通知仍需核对；未擅自为作者生成许可声明。
+
+target_build_utils 0.3.1
+发布包声明 ISC/Apache-2.0；README 的 License 段却称 llvm_build_utils。当前上游亦未带许可文件。需核实这段引用是否适用于本包及应保留的原始版权许可通知。
+
+Current entries without a usable full license text:
+hbb_common 0.1.0
+quest 0.3.0
+repng 0.2.2
+scrap 0.5.0
+stunclient 0.4.1
+target_build_utils 0.3.1

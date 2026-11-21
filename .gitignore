@@ -60,3 +60,51 @@ flutter/web/
 /third_party/libdrmtap/
 # Local git worktrees
 .worktrees/
+
+# SwiftRust source assets and native build products
+!flutter/ios/Runner/SwiftRustIcon/**
+!flutter/ios/Runner/Assets.xcassets/SwiftRustIcon*/**
+!src/bridge_generated.rs
+!src/bridge_generated.io.rs
+/.build-swiftrust/
+/flutter/ios/RunnerDevice.xcodeproj/
+/flutter/ios/RunnerDevice.xcworkspace/
+*.p12
+*.mobileprovision
+
+# SwiftRust landing page logo source
+!website/assets/swiftrust.png
+
+# User-provided SwiftRust landing page screenshots
+!website/assets/screenshots/**
+
+# Local signing and App Store Connect submission material (never publish).
+/.private-swiftrust/
+*.p8
+*.pfx
+*.keychain-db
+*.xcarchive/
+*.ipa
+
+# Official Apple product bezels; governed by the accompanying Apple license.
+!website/assets/bezel/**
+
+# Official brand vectors used for external project/profile links.
+!flutter/ios/Runner/Assets.xcassets/GitHubBrand.imageset/**
+!flutter/ios/Runner/Assets.xcassets/XBrand.imageset/**
+
+!flutter/ios/Runner/Assets.xcassets/AlbertAvatar.imageset/**
+
+# Local submission, developer state and diagnostic output
+/docs/swiftrust/TESTFLIGHT.md
+/.private-swiftrust-*/
+**/xcuserdata/
+*.xcuserstate
+/DerivedData/
+*.log
+*.p12
+*.p8
+*.cer
+*.keychain
+*.key
+*.pem

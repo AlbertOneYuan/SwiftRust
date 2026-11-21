@@ -293,5 +293,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("android-logs-folder-tip", "Choose Android → media to store log files."),
         ("install-directory-not-empty-tip", "The selected folder is not empty. Installation may delete existing data. Consider choosing a different folder."),
         ("username-login-disabled-oidc-unavailable", "Username and password login is disabled, and no OIDC login methods are available."),
+        ("Trackpad mode", ""),
+        ("trackpad_gestures_tip", "One finger: move pointer. Tap: left click. Two fingers: scroll or tap to right click. Pinch: zoom canvas. Hold and move: drag. Lift to release."),
     ].iter().cloned().collect();
 }
