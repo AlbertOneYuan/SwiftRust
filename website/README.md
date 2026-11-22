@@ -25,7 +25,7 @@
 
 使用 GitHub 自动提供的短期 GITHUB_TOKEN/OIDC 权限，不需要个人访问令牌、Apple 签名证书或另外配置 Secrets。仓库/组织如限制 Actions 或部署分支，需允许此工作流及默认分支。GitHub Free 可为公开仓库提供 Pages；私有仓库需对应付费计划，具体以 GitHub 账户权限为准。
 
-页面资源均使用相对路径，支持仓库子路径（例如 /SwiftRust/）和日后绑定自有域名。自有域名请在 Pages 设置及 DNS 中配置，当前未写入 CNAME 或假域名。
+页面资源均使用相对路径，支持仓库子路径（例如 /SwiftRust/）和自有域名。当前域名为 `swiftrust.airefactor.me`，Cloudflare CNAME 指向 `albertoneyuan.github.io`（DNS only），并在 GitHub Pages 设置中绑定。
 
 官方参考：https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
 
@@ -35,4 +35,4 @@
 
 中文入口为 `index.html`，完整英文入口为 `en/index.html`（`/en/`）。页顶“中文 / English”使用真实链接切换，语言随 URL 保留；静态托管和 GitHub Pages 子路径均可使用。英文页面包含独立标题、描述、替代文本和开源说明；交互文案随页面语言切换。实机截图保留原始中文界面。
 
-Pages 通过 GitHub Actions 发布 website 目录。中文首页为 https://albertoneyuan.github.io/SwiftRust/ ，英文为 /SwiftRust/en/ ，公开隐私声明为 /SwiftRust/privacy/ 。工作流保留手动触发，发布前核对使用隐私政策链接的外部配置。
+Pages 通过 GitHub Actions 发布 website 目录。中文首页为 https://swiftrust.airefactor.me/ ，英文为 /en/ ，公开隐私声明为 /privacy/ 。原 GitHub Pages 地址自动跳转到自有域名。工作流保留手动触发，发布前核对使用隐私政策链接的外部配置。
