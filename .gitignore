@@ -108,3 +108,7 @@ flutter/web/
 *.keychain
 *.key
 *.pem
+
+# Local agent environment and optional service configuration
+/.codex/
+/SwiftRustServices.local.plist

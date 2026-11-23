@@ -7,6 +7,181 @@ import Network
 @available(iOS 17.0, *)
 @MainActor
 final class NativeFrontendTests: XCTestCase {
+    func testOSPasswordPopupCentersAcrossContainerInsetsAndKeepsKeyboardFocus() async throws {
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.first as? UIWindowScene)
+        let previous = scene.windows.first(where: \.isKeyWindow)
+        let window = UIWindow(windowScene: scene), model = NativeShellModel(window: UUID().uuidString)
+        _ = try model.core.call("connect", ["id": "127.0.0.9:9", "mode": "desktop", "password": ""])
+        model.connected = true
+        let host = UIHostingController(rootView: NativeOSPasswordSettings(model: model))
+        host.additionalSafeAreaInsets = UIEdgeInsets(top: 70, left: 60, bottom: 0, right: 0)
+        window.rootViewController = host; window.makeKeyAndVisible()
+        defer { window.endEditing(true); window.isHidden = true; previous?.makeKeyAndVisible(); model.closeSession() }
+        func field(in view: UIView) -> UITextField? {
+            if let value = view as? UITextField, value.isSecureTextEntry { return value }
+            return view.subviews.compactMap { field(in: $0) }.first
+        }
+        for _ in 0..<100 {
+            if field(in: host.view) != nil { break }
+            try await Task.sleep(for: .milliseconds(20))
+        }
+        window.layoutIfNeeded()
+        let password = try XCTUnwrap(field(in: host.view))
+        let frame = password.convert(password.bounds, to: window)
+        XCTAssertEqual(frame.midX, window.bounds.midX, accuracy: 2)
+        try await Task.sleep(for: .milliseconds(150))
+        XCTAssertTrue(password.becomeFirstResponder())
+        try await Task.sleep(for: .milliseconds(400))
+        XCTAssertTrue(password.isFirstResponder)
+        XCTAssertGreaterThanOrEqual(password.convert(password.bounds, to: window).minY, 0)
+    }
+
+    func testFirstPasswordSheetWaitsForContentAndSurvivesKeyboardPresentation() async throws {
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.first as? UIWindowScene)
+        let previous = scene.windows.first(where: \.isKeyWindow), window = UIWindow(windowScene: scene), model = NativeShellModel()
+        let host = NativeHostingController(model: model)
+        window.rootViewController = host; window.makeKeyAndVisible()
+        defer { host.dismiss(animated: false); model.canvas?.stop(); window.isHidden = true; previous?.makeKeyAndVisible(); model.closeSession() }
+        model.sheet = .connectionPrompt
+        try await Task.sleep(for: .milliseconds(150))
+        XCTAssertNil(host.presentedViewController, "Authentication must not present an empty sheet before its content exists")
+        model.handle(["name": "msgbox", "type": "input-password", "title": "连接认证", "text": "请输入访问密码"])
+        func secureField(_ view: UIView) -> UITextField? {
+            if let field = view as? UITextField, field.isSecureTextEntry { return field }
+            return view.subviews.compactMap { secureField($0) }.first
+        }
+        for _ in 0..<250 { if let sheet = host.presentedViewController, secureField(sheet.view) != nil { break }; try await Task.sleep(for: .milliseconds(20)) }
+        let sheet = try XCTUnwrap(host.presentedViewController), field = try XCTUnwrap(secureField(sheet.view))
+        XCTAssertTrue(field.becomeFirstResponder())
+        try await Task.sleep(for: .milliseconds(150))
+        XCTAssertTrue(field.isFirstResponder)
+    }
+
+    func testSilentDictationEndsNormallyWithoutHidingRecognitionFailures() {
+        XCTAssertTrue(NativeDictation.isNormalCompletion(NSError(domain: "kAFAssistantErrorDomain", code: 1110), finishing: true))
+        XCTAssertTrue(NativeDictation.isNormalCompletion(NSError(domain: "kLSRErrorDomain", code: 301), finishing: true))
+        XCTAssertFalse(NativeDictation.isNormalCompletion(NSError(domain: "kLSRErrorDomain", code: 301), finishing: false))
+        XCTAssertFalse(NativeDictation.isNormalCompletion(NSError(domain: "kAFAssistantErrorDomain", code: 1101), finishing: true))
+        XCTAssertFalse(NativeDictation.isNormalCompletion(NSError(domain: "kLSRErrorDomain", code: 102), finishing: true))
+    }
+
+    func testDictationStreamsNewTextWithoutRepeatingPartialResults() {
+        let first = NativeDictationEdit(previous: "", next: "你好")
+        XCTAssertEqual(first.deleteCount, 0)
+        XCTAssertEqual(first.insertion, "你好")
+        let growth = NativeDictationEdit(previous: "你好", next: "你好世界")
+        XCTAssertEqual(growth.deleteCount, 0)
+        XCTAssertEqual(growth.insertion, "世界")
+        let repeated = NativeDictationEdit(previous: "你好世界", next: "你好世界")
+        XCTAssertEqual(repeated.deleteCount, 0)
+        XCTAssertEqual(repeated.insertion, "")
+    }
+
+    func testDictationRevisesOnlyItsChangedSuffix() {
+        let correction = NativeDictationEdit(previous: "你好世间", next: "你好世界")
+        XCTAssertEqual(correction.deleteCount, 1)
+        XCTAssertEqual(correction.insertion, "界")
+        let shortened = NativeDictationEdit(previous: "你好世界", next: "你好")
+        XCTAssertEqual(shortened.deleteCount, 2)
+        XCTAssertEqual(shortened.insertion, "")
+        let emoji = NativeDictationEdit(previous: "好👨‍👩‍👧‍👦", next: "好🙂")
+        XCTAssertEqual(emoji.deleteCount, 1)
+        XCTAssertEqual(emoji.insertion, "🙂")
+    }
+
+    func testDictationLanguageAndPermissionDescriptions() {
+        XCTAssertEqual(NativeDictationLanguage.resolved("en-US").identifier, "en-US")
+        XCTAssertEqual(NativeDictationLanguage.resolved("").identifier, Locale(identifier: Locale.preferredLanguages.first ?? "en-US").identifier)
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: "NSMicrophoneUsageDescription"))
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: "NSSpeechRecognitionUsageDescription"))
+    }
+
+    func testTerminalHeaderStaysAtTopWhenKeyboardShortensSplitWindow() {
+        let sideCamera = CGRect(x: 4, y: 220, width: 78, height: 166)
+        XCTAssertEqual(NativeTerminalScreen.headerTopInset(safeAreaTop: 0, camera: sideCamera), 8)
+        let topCamera = CGRect(x: 220, y: 4, width: 166, height: 78)
+        XCTAssertEqual(NativeTerminalScreen.headerTopInset(safeAreaTop: 0, camera: topCamera), 10)
+        XCTAssertEqual(NativeTerminalScreen.headerTopInset(safeAreaTop: 59, camera: topCamera), 67)
+    }
+
+    func testAnonymousAnalyticsConfigurationDisablesContentAndIdentityCapture() {
+        let config = NativeTraffic.configuration()
+        XCTAssertEqual(config.personProfiles, .never)
+        XCTAssertEqual(config.host.absoluteString, "https://apps.air.build/traffic")
+        XCTAssertTrue(config.captureApplicationLifecycleEvents)
+        XCTAssertTrue(config.disableGeoIp)
+        XCTAssertFalse(config.setDefaultPersonProperties)
+        XCTAssertFalse(config.captureScreenViews)
+        XCTAssertFalse(config.enableSwizzling)
+        XCTAssertFalse(config.captureElementInteractions)
+        XCTAssertFalse(config.captureSwiftUIElementInteractions)
+        XCTAssertFalse(config.captureAutocaptureElementText)
+        XCTAssertFalse(config.rageClickConfig.enabled)
+        XCTAssertFalse(config.capturePushNotificationSubscriptions)
+        XCTAssertFalse(config.capturePushNotificationOpened)
+        XCTAssertFalse(config.sessionReplay)
+        XCTAssertFalse(config.surveys)
+        XCTAssertFalse(config.preloadFeatureFlags)
+        XCTAssertFalse(config.sendFeatureFlagEvent)
+        XCTAssertFalse(config.errorTrackingConfig.autoCapture)
+        XCTAssertFalse(config.errorTrackingConfig.exceptionSteps.enabled)
+        XCTAssertNil(config.tracingHeaders)
+    }
+
+    func testAnonymousAnalyticsAllowsOnlyStaticScreensAndLifecycleWithoutContent() throws {
+        for screen in NativeTraffic.Screen.allCases {
+            let properties = try XCTUnwrap(NativeTraffic.properties(event: "$screen", values: [
+                "$screen_name": screen.rawValue, "$session_id": "random-session", "$app_version": "1.0",
+                "$device_id": "device", "$set": ["email": "private"], "remoteID": "private", "password": "private",
+                "$elements": "private", "$ip": "private", "error": "private", "filename": "private", "$process_person_profile": true]))
+            XCTAssertEqual(Set(properties.keys), ["$screen_name", "$session_id", "$app_version", "$geoip_disable", "$process_person_profile"])
+            XCTAssertEqual(properties["$screen_name"] as? String, screen.rawValue)
+            XCTAssertEqual(properties["$geoip_disable"] as? Bool, true)
+            XCTAssertEqual(properties["$process_person_profile"] as? Bool, false)
+        }
+        XCTAssertNil(NativeTraffic.properties(event: "$screen", values: ["$screen_name": "private remote name"]))
+        for event in ["$identify", "$create_alias", "$set", "$autocapture", "$rageclick", "$exception", "$snapshot", "$feature_flag_called", "custom_event"] {
+            XCTAssertNil(NativeTraffic.properties(event: event, values: [:]))
+        }
+        for event in ["Application Installed", "Application Updated", "Application Opened", "Application Backgrounded"] {
+            let properties = try XCTUnwrap(NativeTraffic.properties(event: event, values: ["from_background": true, "$screen_name": "private", "remoteID": "private"]))
+            XCTAssertEqual(Set(properties.keys), ["from_background", "$geoip_disable", "$process_person_profile"])
+        }
+    }
+
+    func testAnonymousAnalyticsStringsUseNativeLanguageSelection() {
+        let store = NativeTranslationStore.shared
+        XCTAssertEqual(store.lookup("匿名使用统计", language: "en"), "Anonymous Usage Analytics")
+        XCTAssertEqual(store.lookup("匿名使用统计", language: "zh-cn"), "匿名使用统计")
+        XCTAssertEqual(store.lookup("匿名使用统计", language: "zh-tw"), "匿名使用統計")
+    }
+
+    func testFeedbackStringsUseNativeLanguageSelection() {
+        let store = NativeTranslationStore.shared
+        for (source, english) in [("发送反馈", "Send Feedback"), ("添加截图", "Add Screenshots"), ("你的反馈已发送。", "Your feedback was sent."), ("自动崩溃报告", "Automatic Crash Reports")] {
+            XCTAssertEqual(store.lookup(source, language: "en"), english)
+            XCTAssertEqual(store.lookup(source, language: "zh-cn"), source)
+        }
+        XCTAssertEqual(store.lookup("添加截图", language: "zh-tw"), "加入截圖")
+    }
+
+    func testAirFeedbackCrashBodyKeepsDiagnosticsWithoutAccountIdentity() throws {
+        let tree = Data(#"{"callStacks":[{"threadAttributed":true,"callStackRootFrames":[{"binaryName":"Runner","binaryUUID":"6122F511-1299-4F42-991E-F827E0085B1E","offsetIntoBinaryTextSegment":4096}]}]}"#.utf8)
+        let crash = AirCrashReports.Crash(occurredAt: Date(timeIntervalSince1970: 1_790_000_000), appVersion: "1.0", appBuild: "test", deviceModel: "iPhone17,2", osVersion: "iPhone OS 18.0 (22A3354)", architecture: "arm64", exceptionType: 1, exceptionCode: 0, signal: 11, exceptionName: nil, exceptionMessage: "Synthetic test diagnostic", terminationReason: "Synthetic test termination", callStackTree: tree)
+        let bodies = AirCrashReports.bodies(of: [crash], installID: "synthetic-test-install")
+        let body = try XCTUnwrap(bodies.first)
+        let json = try XCTUnwrap(JSONSerialization.jsonObject(with: body.json) as? [String: Any])
+        XCTAssertEqual(bodies.count, 1)
+        XCTAssertEqual(json["installID"] as? String, "synthetic-test-install")
+        let exception = try XCTUnwrap(json["exception"] as? [String: Any])
+        XCTAssertEqual(exception["message"] as? String, "Synthetic test diagnostic")
+        let threads = try XCTUnwrap(json["threads"] as? [[String: Any]])
+        XCTAssertEqual(threads.first?["crashed"] as? Bool, true)
+        let frames = try XCTUnwrap(threads.first?["frames"] as? [[String: Any]])
+        XCTAssertEqual(frames.first?["image"] as? String, "Runner")
+        XCTAssertEqual(Set(json.keys), ["id", "occurredAt", "installID", "app", "device", "exception", "threads", "images"])
+    }
+
     func testHomeQuickActionMenuKeepsThreeToolsAndCommonDeviceEntry() {
         let empty = NativeHomeQuickActions.items(devices: [])
         XCTAssertEqual(empty.map(\.type), [NativeHomeQuickActions.newWindow, NativeHomeQuickActions.scan, NativeHomeQuickActions.configure])
@@ -1002,6 +1177,27 @@ final class NativeFrontendTests: XCTestCase {
         gesture.begin(first: CGPoint(x: 80, y: 80), second: CGPoint(x: 180, y: 80))
         if case .transform = gesture.move(first: CGPoint(x: 60, y: 80), second: CGPoint(x: 200, y: 80)) {} else { XCTFail("A fresh gesture must allow pinch after scrolling") }
     }
+    func testScrollingWaitsForBothFingersToMovePastThreshold() {
+        var gesture = NativeTwoFingerGesture()
+        gesture.begin(first: CGPoint(x: 80, y: 80), second: CGPoint(x: 180, y: 80))
+        XCTAssertEqual(gesture.move(first: CGPoint(x: 80, y: 110), second: CGPoint(x: 180, y: 68)), .scroll(.zero))
+        XCTAssertEqual(gesture.move(first: CGPoint(x: 80, y: 80), second: CGPoint(x: 180, y: 104)), .scroll(.zero))
+        XCTAssertEqual(gesture.move(first: CGPoint(x: 80, y: 87), second: CGPoint(x: 180, y: 104)), .scroll(.zero))
+        XCTAssertEqual(gesture.move(first: CGPoint(x: 80, y: 88), second: CGPoint(x: 180, y: 96)), .scroll(CGPoint(x: 0, y: 12)))
+    }
+
+    func testActivatedScrollContinuesWithOneFingerUntilAllFingersLift() {
+        var gesture = NativeTwoFingerGesture()
+        gesture.begin(first: CGPoint(x: 80, y: 80), second: CGPoint(x: 180, y: 80))
+        XCTAssertEqual(gesture.moveRemainingFinger(from: .zero, to: CGPoint(x: 0, y: 20)), .scroll(.zero))
+        _ = gesture.move(first: CGPoint(x: 80, y: 88), second: CGPoint(x: 180, y: 88))
+        XCTAssertEqual(gesture.moveRemainingFinger(from: CGPoint(x: 80, y: 88), to: CGPoint(x: 90, y: 108)), .scroll(CGPoint(x: 0, y: 20)))
+        gesture.begin(first: CGPoint(x: 90, y: 108), second: CGPoint(x: 180, y: 108))
+        XCTAssertEqual(gesture.move(first: CGPoint(x: 90, y: 111), second: CGPoint(x: 180, y: 111)), .scroll(CGPoint(x: 0, y: 3)))
+        gesture.end()
+        XCTAssertEqual(gesture.moveRemainingFinger(from: .zero, to: CGPoint(x: 0, y: 20)), .scroll(.zero))
+    }
+
     func testPinchKeepsCanvasDraggingUntilRelease() {
         var gesture = NativeTwoFingerGesture()
         gesture.begin(first: CGPoint(x: 80, y: 80), second: CGPoint(x: 180, y: 80))

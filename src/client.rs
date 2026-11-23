@@ -3055,6 +3055,15 @@ impl LoginConfigHandler {
         }
     }
 
+    #[cfg(any(target_os = "ios", test))]
+    pub fn auto_login_password_if_lock_checked(&self, pi: &PeerInfo) -> String {
+        if is_peer_handling_os_login(pi) && !self.get_option("auto-login").is_empty() {
+            self.get_option("os-password")
+        } else {
+            String::new()
+        }
+    }
+
     /// Load [`PeerConfig`].
     pub fn load_config(&self) -> PeerConfig {
         debug_assert!(self.id.len() > 0);
@@ -4469,11 +4478,14 @@ fn _input_os_password(p: String, activate: bool, interface: impl Interface) {
 /// screen is not locked by the time they arrive.
 pub fn auto_login(p: String, pi: &PeerInfo, interface: impl Interface) {
     if !is_peer_handling_os_login(pi) {
+        #[cfg(not(target_os = "ios"))]
         input_os_password(p, true, interface);
         return;
     }
     std::thread::spawn(move || {
+        #[cfg(not(target_os = "ios"))]
         activate_os(&interface, true);
+        #[cfg(not(target_os = "ios"))]
         std::thread::sleep(Duration::from_millis(1200));
         let mut msg_out = Message::new();
         msg_out.set_os_login(OSLogin {
@@ -4488,6 +4500,32 @@ pub fn auto_login(p: String, pi: &PeerInfo, interface: impl Interface) {
 fn is_peer_handling_os_login(pi: &PeerInfo) -> bool {
     (pi.platform == crate::common::PLATFORM_WINDOWS || pi.platform == crate::common::PLATFORM_MACOS)
         && hbb_common::get_version_number(&pi.version) >= hbb_common::get_version_number("1.5.1")
+}
+
+#[cfg(test)]
+mod ios_auto_login_tests {
+    use super::{LoginConfigHandler, PeerInfo};
+
+    #[test]
+    fn lock_checked_auto_login_does_not_require_lock_on_disconnect() {
+        let mut login = LoginConfigHandler::default();
+        login.config.lock_after_session_end.v = false;
+        login.config.options.insert("auto-login".into(), "Y".into());
+        login.config.options.insert("os-password".into(), "test-password".into());
+        let peer = PeerInfo { platform: crate::common::PLATFORM_MACOS.into(), version: "1.5.3".into(), ..Default::default() };
+        assert_eq!(login.auto_login_password_if_lock_checked(&peer), "test-password");
+        login.config.options.remove("auto-login");
+        assert!(login.auto_login_password_if_lock_checked(&peer).is_empty());
+    }
+
+    #[test]
+    fn peers_without_lock_checking_never_receive_auto_login_password() {
+        let mut login = LoginConfigHandler::default();
+        login.config.options.insert("auto-login".into(), "Y".into());
+        login.config.options.insert("os-password".into(), "test-password".into());
+        let peer = PeerInfo { platform: crate::common::PLATFORM_MACOS.into(), version: "1.5.0".into(), ..Default::default() };
+        assert!(login.auto_login_password_if_lock_checked(&peer).is_empty());
+    }
 }
 
 #[derive(Copy, Clone)]

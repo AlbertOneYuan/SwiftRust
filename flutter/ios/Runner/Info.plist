@@ -44,6 +44,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Use the microphone for on-device dictation. Recognized text is sent to your remote device while you speak.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Convert speech to text on this iPhone for remote input. Audio is not sent to a speech recognition server.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs camera access to scan QR codes</string>
 	<key>NSPhotoLibraryUsageDescription</key>

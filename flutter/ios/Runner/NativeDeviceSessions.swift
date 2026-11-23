@@ -331,6 +331,12 @@ struct NativeTerminalScreen: View {
         _sessions = ObservedObject(wrappedValue: model.terminalSession)
     }
     var body: some View { NativeTerminalContent(model: model, sessions: sessions, terminal: sessions.active) }
+
+    static func headerTopInset(safeAreaTop: CGFloat, camera: CGRect) -> CGFloat {
+        // A side occlusion must not push the header down when the keyboard shortens a split window.
+        let cameraBottom = camera.minY < 64 ? camera.maxY - 20 : 0
+        return max(safeAreaTop + 8, cameraBottom - 52)
+    }
 }
 
 @available(iOS 17.0, *)
@@ -345,7 +351,7 @@ private struct NativeTerminalContent: View {
         GeometryReader { geometry in
             let camera = NativeSessionContent.cameraFrame(in: geometry, window: model.window)
             let windowInsets = model.window?.safeAreaInsets ?? .zero
-            let top = max(max(geometry.safeAreaInsets.top, windowInsets.top) + 8, camera.maxY - 20 - 52)
+            let top = NativeTerminalScreen.headerTopInset(safeAreaTop: max(geometry.safeAreaInsets.top, windowInsets.top), camera: camera)
             VStack(spacing: 0) {
                 header.padding(.leading, geometry.safeAreaInsets.leading).padding(.trailing, geometry.safeAreaInsets.trailing)
                     .padding(.top, top).background(.regularMaterial).zIndex(1)

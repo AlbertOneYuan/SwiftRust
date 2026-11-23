@@ -119,6 +119,10 @@ final class NativeShellModel: ObservableObject {
     @Published var sheet: NativeSheet?
     @Published var errorMessage: String?
     @Published var prompt: NativeConnectionMessage?
+    var authenticationPrompt: NativeConnectionMessage? {
+        guard sheet == .connectionPrompt, let prompt, prompt.password || prompt.twoFactor else { return nil }
+        return prompt
+    }
     @Published var confirmDisconnect = false
     @Published var connectionFailure: NativeConnectionMessage?
     @Published var remoteUsername = ""

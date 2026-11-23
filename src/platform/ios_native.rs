@@ -757,7 +757,12 @@ fn dispatch(request: Value) -> ResultType<Value> {
             if a["autoLogin"].is_boolean() {
                 ffi::session_peer_option(sid, "auto-login".into(), if flag(a, "autoLogin") { "Y".into() } else { "".into() });
             }
-            if flag(a, "send") { ffi::session_input_os_password(sid, password); }
+            if flag(a, "send") {
+                let remote = flutter::sessions::get_session_by_session_id(&sid)
+                    .ok_or_else(|| anyhow!("远程连接已变更"))?;
+                // Manual password entry must preserve focus in the selected authorization field.
+                remote.input_os_password(password, false);
+            }
         }
         "sessionSettings" => return session_settings(),
         "sessionOption" => {

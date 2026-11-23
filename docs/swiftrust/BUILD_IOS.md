@@ -82,3 +82,7 @@ python3 scripts/ios/build-shortcut-templates.py
 ```
 
 The signer sends each placeholder-only workflow to Apple for validation. Device IDs remain blank import questions; do not put credentials or personal addresses into the build templates. Keep the signed resource bytes unchanged at runtime. Apple's file sharing/signing documentation: https://support.apple.com/guide/shortcuts-mac/apd455c82f02/mac . The editable generator is included as corresponding source; no third-party runtime library is used.
+
+## Optional feedback and diagnostics configuration
+
+The public source does not contain the developer’s service key or Apple team ID. Feedback, crash uploads and anonymous analytics remain inactive until a service key is configured. To use your own AirFeedback environment, set `SwiftRustFeedbackKey` in the app’s build-generated Info.plist. Set `SwiftRustAppAttestTeamID` only if you also configure App Attest for your own Apple team. Keep deployment-specific values in local, ignored build configuration.

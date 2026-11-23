@@ -1,0 +1,16 @@
+--- network_configuration.rs.original
++++ network_configuration.rs
+@@ -152,7 +152,12 @@
+                 Some(SCNetworkInterfaceType::SixToFour)
+             } else if id_is_equal_to(kSCNetworkInterfaceTypeBluetooth) {
+                 Some(SCNetworkInterfaceType::Bluetooth)
+-            } else if id_is_equal_to(kSCNetworkInterfaceTypeBridge) {
++            } else if {
++                #[cfg(target_os = "ios")]
++                { false }
++                #[cfg(not(target_os = "ios"))]
++                { id_is_equal_to(kSCNetworkInterfaceTypeBridge) }
++            } {
+                 Some(SCNetworkInterfaceType::Bridge)
+             } else if id_is_equal_to(kSCNetworkInterfaceTypeBond) {
+                 Some(SCNetworkInterfaceType::Bond)

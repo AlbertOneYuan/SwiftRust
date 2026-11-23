@@ -30,6 +30,8 @@ Auth keys are not written to app preferences, Keychain or app logs. Node identit
 
 ## Apple Services
 
+Dictation accesses the microphone only when you start it and uses Apple’s on-device recognition. Unsupported languages do not fall back to cloud recognition. Audio is not sent to the developer, a recognition server or the remote device. Recognized text is sent to the current remote device during dictation. Recognition corrections delete and replace the affected suffix entered by the current dictation.
+
 Apple’s Translation framework is used only to translate fixed interface text. It is not given remote screens, hostnames, passwords, input, files or clipboard contents. Translations are cached locally, and iOS may download language packs. Apple services, system diagnostics and backups follow your system settings and Apple’s privacy policy.
 
 App Attest verifies app authenticity through Apple. Attestation proofs are sent to Apple and AirFeedback.
@@ -111,6 +113,8 @@ Auth key 不写入普通设置、钥匙串或应用日志。节点身份状态�
 [Tailscale 隐私政策](https://tailscale.com/legal/privacy-policy)
 
 ## 苹果翻译与系统服务
+
+听写仅在你启用时访问麦克风，并使用 Apple 框架在本机识别；不支持本地识别的语言不会回退到云端。音频不发送给开发者、识别服务器或远程设备。听写期间，识别文字会实时发送到当前远程设备；识别结果修正时，会回删并替换本次听写已输入的相应文字。
 
 苹果 Translation 框架仅接收固定界面文案，用于补全缺失译文，不接收远程画面、主机名、密码、输入、文件或剪贴板内容。译文缓存在本机，系统可能下载语言包。Apple 的服务、系统诊断和备份由你的系统设置及 Apple 隐私政策管理。
 

@@ -34,44 +34,45 @@ struct NativeImmersiveSessionView: View {
 
     var body: some View {
         ZStack {
-            NativeRemoteCanvas(model: model)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .contentShape(Rectangle())
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(NativeL("远程桌面画布"))
-                .accessibilityIdentifier("native.remoteCanvas")
-            if !model.connected && !model.confirmDisconnect && model.prompt == nil && model.errorMessage == nil && model.sheet == nil {
-                VStack(spacing: 18) {
-                    if model.connectionFailure == nil { ProgressView().tint(.white) }
-                    Text(NativeL(model.status)).font(.subheadline).multilineTextAlignment(.center)
-                    if model.connectionFailure?.hasRetry == true {
-                        Button { model.resumeConnection("reconnect") } label: {
-                            Text(NativeL("重新连接")).font(.headline).frame(maxWidth: .infinity, minHeight: 48)
-                                .background(nativeRustBlue, in: RoundedRectangle(cornerRadius: 12))
-                        }.accessibilityIdentifier("native.reconnect")
+            ZStack {
+                NativeRemoteCanvas(model: model)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .contentShape(Rectangle())
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(NativeL("远程桌面画布"))
+                    .accessibilityIdentifier("native.remoteCanvas")
+                if !model.connected && !model.confirmDisconnect && model.prompt == nil && model.errorMessage == nil && model.sheet == nil {
+                    VStack(spacing: 18) {
+                        if model.connectionFailure == nil { ProgressView().tint(.white) }
+                        Text(NativeL(model.status)).font(.subheadline).multilineTextAlignment(.center)
+                        if model.connectionFailure?.hasRetry == true {
+                            Button { model.resumeConnection("reconnect") } label: {
+                                Text(NativeL("重新连接")).font(.headline).frame(maxWidth: .infinity, minHeight: 48)
+                                    .background(nativeRustBlue, in: RoundedRectangle(cornerRadius: 12))
+                            }.accessibilityIdentifier("native.reconnect")
+                        }
+                        Button(role: .destructive) {
+                            if model.connectionFailure != nil { model.closeSession() } else { model.requestDisconnect() }
+                        } label: {
+                            Text(NativeL("取消连接")).font(.body.weight(.medium)).frame(maxWidth: .infinity, minHeight: 48)
+                                .background(.white.opacity(0.14), in: RoundedRectangle(cornerRadius: 12))
+                        }.accessibilityIdentifier("native.cancelConnection")
                     }
-                    Button(role: .destructive) {
-                        if model.connectionFailure != nil { model.closeSession() } else { model.requestDisconnect() }
-                    } label: {
-                        Text(NativeL("取消连接")).font(.body.weight(.medium)).frame(maxWidth: .infinity, minHeight: 48)
-                            .background(.white.opacity(0.14), in: RoundedRectangle(cornerRadius: 12))
-                    }.accessibilityIdentifier("native.cancelConnection")
+                    .padding(24).frame(maxWidth: 320).foregroundStyle(.white).buttonStyle(.plain)
                 }
-                .padding(24).frame(maxWidth: 320).foregroundStyle(.white).buttonStyle(.plain)
-            }
-            if showStatistics && model.connected {
-                GeometryReader { geometry in
-                    let windowInsets = model.window?.safeAreaInsets ?? .zero
-                    NativeConnectionStatistics(model: model)
-                        .padding(.leading, max(geometry.safeAreaInsets.leading, windowInsets.left) + 16)
-                        .padding(.top, max(geometry.safeAreaInsets.top, windowInsets.top) + 12)
-                }.allowsHitTesting(false)
-            }
+                if showStatistics && model.connected {
+                    GeometryReader { geometry in
+                        let windowInsets = model.window?.safeAreaInsets ?? .zero
+                        NativeConnectionStatistics(model: model)
+                            .padding(.leading, max(geometry.safeAreaInsets.leading, windowInsets.left) + 16)
+                            .padding(.top, max(geometry.safeAreaInsets.top, windowInsets.top) + 12)
+                    }.allowsHitTesting(false)
+                }
+            }.ignoresSafeArea()
             if model.showOSPassword { NativeOSPasswordSettings(model: model) }
             else if model.showResolutionAdjustment { NativeResolutionAdjustmentPopup(model: model) }
             else if model.showInputAdjustment { NativeInputAdjustmentPopup(model: model) }
         }
-        .ignoresSafeArea()
         .background(Color.clear)
         .statusBarHidden(true)
         .persistentSystemOverlays(.hidden)
@@ -161,13 +162,14 @@ enum NativeSessionContent {
 
 @available(iOS 17.0, *)
 struct NativeFloatingDock: View {
+    static let width: CGFloat = 147
     @ObservedObject private var localization = NativeLocalization.shared
     @ObservedObject var model: NativeShellModel
     let availableWidth: CGFloat
     var keyboardShown = false
     @State private var dragX = CGFloat.zero
     var body: some View {
-        let travel = max(0, availableWidth - 110)
+        let travel = max(0, availableWidth - Self.width)
         let x = min(max(CGFloat(model.dockPosition) * travel + dragX, 0), travel)
         controls
             .padding(.top, 6)
@@ -199,12 +201,14 @@ struct NativeFloatingDock: View {
                 .accessibilityLabel(NativeL("快捷键盘")).accessibilityIdentifier("native.shortcutsKeyboard")
                 .disabled(model.remoteKind == .camera || model.sessionToggle("view-only"))
             Divider().frame(height: 18).overlay(.white.opacity(0.25))
+            NativeDictationButton(model: model)
+            Divider().frame(height: 18).overlay(.white.opacity(0.25))
             Menu { NativeSessionMenuContents(model: model) } label: { Image(systemName: "ellipsis").frame(width: 36, height: 34) }
                 .menuOrder(.fixed)
                 .simultaneousGesture(TapGesture().onEnded { model.canvas?.releaseInput() })
                 .accessibilityLabel(NativeL("会话设置")).accessibilityIdentifier("native.sessionSettings")
         }
-        .frame(width: 110, height: 34)
+        .frame(width: Self.width, height: 34)
         .font(.system(size: 17, weight: .regular)).buttonStyle(.plain)
         .foregroundStyle(.white).tint(.white)
         .background {
@@ -253,8 +257,8 @@ final class NativeDockArea: UIView {
     }
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         guard bounds.contains(point) else { return nil }
-        let travel = max(0, bounds.width - 110)
-        let bar = CGRect(x: CGFloat(model.dockPosition) * travel, y: host.view.frame.minY, width: 110, height: 40)
+        let travel = max(0, bounds.width - NativeFloatingDock.width)
+        let bar = CGRect(x: CGFloat(model.dockPosition) * travel, y: host.view.frame.minY, width: NativeFloatingDock.width, height: 40)
         if !model.remoteKeyboardVisible && bar.contains(point) { return super.hitTest(point, with: event) }
         return nil
     }

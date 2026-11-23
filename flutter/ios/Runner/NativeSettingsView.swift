@@ -30,6 +30,8 @@ struct NativeSettingsView: View {
     @ObservedObject var model: NativeShellModel
     @Binding var appearance: String
     var aboutRequest: Int = 0
+    @State private var showFeedback = false
+    @AppStorage(NativeTraffic.enabledKey) private var anonymousAnalytics = true
     @AppStorage("native-show-home-login") private var showHomeLogin = true
     @AppStorage("native.skip-disconnect-confirmation") private var skipDisconnectConfirmation = false
     @AppStorage("native.launch-restore") private var launchRestore = false
@@ -60,6 +62,7 @@ struct NativeSettingsView: View {
                 NavigationLink(value: NativeSettingsRoute.shortcuts) {
                     Label(NativeL("自定义快捷键"), systemImage: "command.square")
                 }.accessibilityIdentifier("native.customShortcuts")
+                NativeDictationLanguagePicker()
                 NavigationLink(value: NativeSettingsRoute.pointer) {
                     LabeledContent { Text(NativeF("%@ 点", String(describing: Int(model.cursorSize)))) } label: { Label(NativeL("鼠标指针"), systemImage: "cursorarrow") }
                 }
@@ -115,6 +118,13 @@ struct NativeSettingsView: View {
                     Text(NativeL("深色")).tag("dark")
                 } label: { Label(NativeL("外观"), systemImage: "circle.lefthalf.filled") }
             }
+            Section {
+                Toggle(NativeL("匿名使用统计"), isOn: $anonymousAnalytics).tint(nativeSwitchTint)
+                    .accessibilityIdentifier("native.anonymousAnalytics")
+                    .onChange(of: anonymousAnalytics) { _, enabled in NativeTraffic.setEnabled(enabled) }
+            } header: { Text(NativeL("隐私")) } footer: {
+                Text(NativeL("仅统计主页、收藏、设置页面访问和应用启动等活动，不关联账号，不收集远程 ID、输入、文件或会话内容。关闭后停止后续统计，不影响反馈与崩溃报告。"))
+            }
             Section(NativeL("关于")) {
                 LabeledContent("SwiftRust", value: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")
                     .accessibilityIdentifier("native.aboutVersion")
@@ -127,7 +137,7 @@ struct NativeSettingsView: View {
                     }
                 }.accessibilityIdentifier("native.supportSwiftRust")
                 #endif
-                Link(destination: NativeContact.feedback) {
+                Button { showFeedback = true } label: {
                     Label(NativeL("发送反馈"), systemImage: "envelope")
                 }.accessibilityIdentifier("native.feedback")
                 if let repositoryURL = nativeRepositoryURL {
@@ -150,6 +160,7 @@ struct NativeSettingsView: View {
             await Task.yield()
             proxy.scrollTo("native.aboutSection", anchor: .top)
         }
+        .sheet(isPresented: $showFeedback) { FeedbackView() }
         .scrollContentBackground(.hidden)
         .background(Color(uiColor: .systemGroupedBackground))
         .navigationDestination(for: NativeSettingsRoute.self) { route in
@@ -1373,11 +1384,19 @@ struct NativeOSPasswordSettings: View {
     @State private var editable = false
     @State private var error = ""
 
+    @FocusState private var passwordFocused: Bool
+
     var body: some View {
-        ZStack {
-            Color.black.opacity(0.12).ignoresSafeArea().onTapGesture { close() }.accessibilityHidden(true)
-            surface.padding(.horizontal, 24)
+        GeometryReader { geometry in
+            ZStack {
+                Color.black.opacity(0.12).ignoresSafeArea().onTapGesture { close() }.accessibilityHidden(true)
+                surface
+                    .frame(width: min(360, max(0, geometry.size.width - 48)),
+                           height: min(238, max(0, geometry.size.height - 24)))
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            }
         }
+        .ignoresSafeArea(.container)
         .environment(\.colorScheme, .dark).tint(nativeRustBlue)
         .toolbar(.hidden, for: .navigationBar)
         .task {
@@ -1400,33 +1419,41 @@ struct NativeOSPasswordSettings: View {
         }
     }
     private var controls: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text(NativeL("自动登录")).font(.system(size: 20, weight: .semibold))
+                Text(NativeL("密码与自动登录")).font(.system(size: 20, weight: .semibold))
                 Spacer()
                 Button { close() } label: {
                     Image(systemName: "xmark").font(.system(size: 12, weight: .semibold))
                         .frame(width: 30, height: 30).background(.white.opacity(0.1), in: Circle())
                 }.accessibilityLabel(NativeL("取消"))
             }
-            SecureField(NativeL("操作系统密码"), text: $password)
-                .textContentType(.password).autocorrectionDisabled().textInputAutocapitalization(.never)
-                .padding(12).background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
-                .accessibilityIdentifier("native.osPassword")
-                .disabled(!editable || !model.connected)
-            Toggle(NativeL("自动登录"), isOn: $autoLogin).tint(.green)
-                .disabled(!editable || !model.connected)
-            Text(NativeL("自动登录需要同时启用“结束会话后锁屏”。"))
-                .font(.footnote).foregroundStyle(.white.opacity(0.65))
-            if !error.isEmpty { Text(NativeL(error)).font(.footnote).foregroundStyle(.red) }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    SecureField(NativeL("操作系统密码"), text: $password)
+                        .focused($passwordFocused)
+                        .submitLabel(.done)
+                        .onSubmit { passwordFocused = false }
+                        .textContentType(.password).autocorrectionDisabled().textInputAutocapitalization(.never)
+                        .padding(12).background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
+                        .accessibilityIdentifier("native.osPassword")
+                        .disabled(!editable || !model.connected)
+                    Toggle(NativeL("自动登录"), isOn: $autoLogin).tint(.green)
+                        .disabled(!editable || !model.connected)
+                    if !error.isEmpty { Text(NativeL(error)).font(.footnote).foregroundStyle(.red) }
+                }.padding(4)
+            }.scrollBounceBehavior(.basedOnSize)
+                .frame(maxHeight: 104)
             Button(NativeL("保存设置")) { save() }
                 .font(.body.weight(.semibold)).frame(maxWidth: .infinity, minHeight: 44)
                 .background(nativeRustBlue, in: RoundedRectangle(cornerRadius: 12))
+                .accessibilityIdentifier("native.saveOSPassword")
                 .disabled(!editable || !model.connected || (autoLogin && password.isEmpty))
         }.font(.system(size: 18)).foregroundStyle(.white).buttonStyle(.plain)
-            .padding(20).frame(maxWidth: 360)
+            .padding(18).frame(maxWidth: 360)
     }
     private func close() {
+        passwordFocused = false
         password = ""
         model.canvas?.hideSystemKeyboard()
         model.showOSPassword = false

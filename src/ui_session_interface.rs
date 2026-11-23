@@ -1841,6 +1841,9 @@ impl<T: InvokeUiSession> Interface for Session<T> {
             }
             if !self.is_view_camera() {
                 self.try_change_init_resolution(pi.current_display);
+                #[cfg(target_os = "ios")]
+                let p = self.lc.read().unwrap().auto_login_password_if_lock_checked(&pi);
+                #[cfg(not(target_os = "ios"))]
                 let p = self.lc.read().unwrap().should_auto_login();
                 if !p.is_empty() {
                     crate::client::auto_login(p, &pi, self.clone());

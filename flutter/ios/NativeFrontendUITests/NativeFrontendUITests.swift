@@ -2,6 +2,23 @@ import XCTest
 
 final class NativeFrontendUITests: XCTestCase {
     @MainActor
+    func testDictationToolbarEntryAndKeyboardLayout() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-NativeUITestImmersive", "YES", "-NativeUITestSessionKind", "desktop", "-native.language", "zh-cn"]
+        app.launch()
+        let mic = app.buttons["native.dictation"]
+        XCTAssertTrue(mic.waitForExistence(timeout: 10))
+        XCTAssertFalse(mic.isEnabled)
+        let dock = app.descendants(matching: .any).matching(identifier: "native.floatingControls").firstMatch
+        XCTAssertLessThanOrEqual(dock.frame.width, 149)
+        app.buttons["native.keyboard"].tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(mic.exists)
+        XCTAssertLessThanOrEqual(dock.frame.maxX, app.windows.firstMatch.frame.maxX + 1)
+        XCTAssertLessThanOrEqual(dock.frame.maxY, app.keyboards.firstMatch.frame.minY + 1)
+    }
+
+    @MainActor
     func testPasswordActionsAreSeparateInsideAccessMenu() {
         let app = XCUIApplication()
         app.launchArguments = ["-NativeUITestImmersive", "YES", "-NativeUITestSessionKind", "desktop", "-native.language", "zh-cn"]
@@ -839,7 +856,8 @@ final class NativeFrontendUITests: XCTestCase {
         dock.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).press(forDuration: 0.1,
             thenDragTo: app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: screen.width * 0.9, dy: dock.frame.midY)))
         XCTAssertEqual(dock.frame.maxX, screen.maxX, accuracy: 3)
-        XCTAssertLessThanOrEqual(dock.frame.width, 112)
+        XCTAssertLessThanOrEqual(dock.frame.width, 149)
+        XCTAssertTrue(app.buttons["native.dictation"].exists)
         app.buttons["native.keyboard"].tap()
         XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5))
         XCTAssertEqual(app.buttons["native.keyboard"].label, "收起系统键盘")

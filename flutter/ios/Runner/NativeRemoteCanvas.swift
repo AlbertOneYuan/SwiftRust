@@ -335,7 +335,7 @@ final class NativeCanvasView: UIView, UITextViewDelegate {
             }
         } else if fingers.count >= 2 {
             pendingTap?.invalidate(); releaseButtons()
-            let points=Array(fingers.values)
+            let points = fingers.sorted { $0.key < $1.key }.map(\.value)
             previousCenter=center(of: points.map(\.position))
             if fingers.count == 2 { twoFingerGesture.begin(first: points[0].position, second: points[1].position) }
         }
@@ -362,8 +362,12 @@ final class NativeCanvasView: UIView, UITextViewDelegate {
                 if moved && !directDown { absolute(entry.value.start); button("left",down:true); directDown=true }
                 absolute(p)
             } else {relative(CGPoint(x:p.x-before.position.x,y:p.y-before.position.y))}
+        } else if fingers.count == 1 && maxFingers == 2, let entry = fingers.first, let before = previous[entry.key] {
+            if case .scroll(let delta) = twoFingerGesture.moveRemainingFinger(from: before.position, to: entry.value.position) {
+                scroll(delta, touch: true)
+            }
         } else if fingers.count==2 && maxFingers==2 {
-            let points = Array(fingers.values)
+            let points = fingers.sorted { $0.key < $1.key }.map(\.value)
             switch twoFingerGesture.move(first: points[0].position, second: points[1].position, canvasOnly: usesOriginalGestures) {
             case .scroll(let delta):
                 if delta != .zero { moved = true }
@@ -384,11 +388,11 @@ final class NativeCanvasView: UIView, UITextViewDelegate {
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let wasDragging=dragging || directDown
-        twoFingerGesture.end()
         let point=touches.first?.location(in:self) ?? .zero
         for touch in touches {fingers.removeValue(forKey:ObjectIdentifier(touch))}
         longPress?.invalidate()
         if fingers.isEmpty {
+            twoFingerGesture.end()
             releaseButtons()
             if !wasDragging && !longPressed && !moved && CACurrentMediaTime()-began<0.45 {
                 if maxFingers==2 && !isDirectTouch {pendingTap?.invalidate();click(button:"right")}
@@ -498,6 +502,7 @@ final class NativeShortcutInputView: UIInputView {
 
 
 struct NativeTwoFingerGesture {
+    private static let scrollThreshold: CGFloat = 8
     enum Action: Equatable {
         case scroll(CGPoint)
         case transform(CGFloat, CGPoint, CGPoint)
@@ -506,14 +511,18 @@ struct NativeTwoFingerGesture {
     private var mode = Mode.pending
     private var initialDistance: CGFloat = 0
     private var previousDistance: CGFloat = 0
+    private var initialFirst = CGPoint.zero
+    private var initialSecond = CGPoint.zero
     private var initialCenter = CGPoint.zero
     private var previousCenter = CGPoint.zero
     mutating func begin(first: CGPoint, second: CGPoint) {
+        let keepScrolling = mode == .scroll
+        initialFirst = first; initialSecond = second
         initialDistance = hypot(second.x - first.x, second.y - first.y)
         previousDistance = initialDistance
         initialCenter = CGPoint(x: (first.x + second.x) / 2, y: (first.y + second.y) / 2)
         previousCenter = initialCenter
-        mode = .pending
+        mode = keepScrolling ? .scroll : .pending
     }
     mutating func move(first: CGPoint, second: CGPoint, canvasOnly: Bool = false) -> Action {
         let distance = hypot(second.x - first.x, second.y - first.y)
@@ -521,7 +530,8 @@ struct NativeTwoFingerGesture {
         if mode == .pending {
             if abs(distance - initialDistance) > max(12, initialDistance * 0.08)
                 || (canvasOnly && hypot(center.x - initialCenter.x, center.y - initialCenter.y) >= 6) { mode = .transform }
-            else if !canvasOnly && abs(center.y - initialCenter.y) >= 6 { mode = .scroll }
+            else if !canvasOnly && abs(first.y - initialFirst.y) >= Self.scrollThreshold && abs(second.y - initialSecond.y) >= Self.scrollThreshold
+                && (first.y - initialFirst.y) * (second.y - initialSecond.y) > 0 { mode = .scroll }
             else { return .scroll(.zero) }
         }
         let action: Action = mode == .transform
@@ -529,6 +539,9 @@ struct NativeTwoFingerGesture {
             : .scroll(CGPoint(x: 0, y: center.y - previousCenter.y))
         previousCenter = center; previousDistance = distance
         return action
+    }
+    func moveRemainingFinger(from previous: CGPoint, to current: CGPoint) -> Action {
+        .scroll(mode == .scroll ? CGPoint(x: 0, y: current.y - previous.y) : .zero)
     }
     mutating func end() { mode = .pending }
 }

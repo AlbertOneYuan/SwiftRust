@@ -39,7 +39,7 @@ struct NativeShellView: View {
         .preferredColorScheme(scheme)
         .statusBarHidden(model.remoteID != nil && !model.fileBrowserMinimized)
         .persistentSystemOverlays(model.remoteID != nil && !model.fileBrowserMinimized ? .hidden : .automatic)
-        .sheet(item: Binding(get: { model.sheet == .scanner ? nil : model.sheet }, set: { if model.sheet != .scanner { model.sheet = $0 } })) { sheet in
+        .sheet(item: Binding(get: { model.sheet == .scanner || model.sheet == .connectionPrompt ? nil : model.sheet }, set: { if model.sheet != .scanner && model.sheet != .connectionPrompt { model.sheet = $0 } })) { sheet in
             NavigationStack {
                 switch sheet {
                 case .scanner: EmptyView()
@@ -50,8 +50,7 @@ struct NativeShellView: View {
                 case .account: NativeAccountView(model: model)
                 case .gestures: NativeGestureHelp(mode: model.inputMode)
                 case .servers: NativeServerSettings(model: model)
-                case .connectionPrompt:
-                    if let prompt = model.prompt { NativeConnectionPrompt(model: model, prompt: prompt).id(prompt.id) }
+                case .connectionPrompt: EmptyView()
                 case .resolution: NativeResolutionSettings(model: model)
                     .toolbar { ToolbarItem(placement: .confirmationAction) { Button(NativeL("完成")) { model.sheet = nil } } }
                 case .scroll: NativeScrollSettings()
@@ -60,6 +59,10 @@ struct NativeShellView: View {
                     .toolbar { ToolbarItem(placement: .confirmationAction) { Button(NativeL("完成")) { model.sheet = nil } } }
                 }
             }.modifier(NativeDisconnectConfirmation(model: model))
+        }
+        .sheet(item: .constant(model.authenticationPrompt)) { prompt in
+            NavigationStack { NativeConnectionPrompt(model: model, prompt: prompt).id(prompt.id) }
+                .modifier(NativeDisconnectConfirmation(model: model))
         }
         .fullScreenCover(isPresented: Binding(get: { model.sheet == .scanner }, set: { if !$0 && model.sheet == .scanner { model.sheet = nil } })) {
             NativeQRConnectionView(model: model).modifier(NativeDisconnectConfirmation(model: model))
@@ -103,6 +106,7 @@ struct NativeShellView: View {
                 }
             }
             .background(Color(uiColor: .systemGroupedBackground))
+            .onAppear { NativeTraffic.screen(section == .connection ? .home : section == .favorites ? .favorites : .settings) }
             .navigationTitle(section == .connection ? "SwiftRust" : NativeL(section.title))
             .navigationBarTitleDisplayMode(section == .connection ? .large : .inline)
             .toolbar(section == .favorites ? .hidden : .visible, for: .navigationBar)
@@ -471,7 +475,7 @@ private struct NativeDisconnectConfirmation: ViewModifier {
                 if !$0 {
                     if disconnecting { model.confirmDisconnect = false }
                     else if error != nil { model.errorMessage = nil }
-                    else { model.prompt = nil }
+                    else if model.prompt?.id == notice?.id { model.prompt = nil }
                 }
             }
         )) {
