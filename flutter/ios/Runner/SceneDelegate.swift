@@ -73,7 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = NativeHostingController(model: model)
         } else {
             let controller = UIViewController()
-            let label = UILabel(); label.text = "此原生版本需要 iOS 17 或更新版本"; label.textAlignment = .center
+            let label = UILabel(); label.text = NativeL("此原生版本需要 iOS 17 或更新版本"); label.textAlignment = .center
             controller.view = label; window.rootViewController = controller
         }
         window.makeKeyAndVisible()

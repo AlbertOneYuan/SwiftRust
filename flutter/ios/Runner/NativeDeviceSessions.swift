@@ -121,7 +121,7 @@ struct NativePeerRow: View {
         selectedID = tab.id
     }
     func add(connected: Bool) {
-        let tab = NativeTerminalModel(id: nextID, title: "终端 \(nextID)", core: core)
+        let tab = NativeTerminalModel(id: nextID, title: NativeF("终端 %@", String(nextID)), core: core)
         nextID += 1; tabs.append(tab); select(tab)
         if connected { tab.open() }
     }
@@ -202,7 +202,7 @@ struct NativePeerRow: View {
         guard cols > 0, rows > 0 else { return }
         let changed = cols != columns || rows != self.rows
         columns = cols; self.rows = rows
-        if isOpen && changed { status = "已连接 · \(cols) × \(rows)"; call("terminalResize", ["rows": rows, "cols": cols]) }
+        if isOpen && changed { status = NativeF("已连接 · %@ × %@", String(cols), String(rows)); call("terminalResize", ["rows": rows, "cols": cols]) }
         if openRequested && !started { openWhenLaidOut() }
     }
     func attach(_ view: NativeTerminalCanvas) {
@@ -216,7 +216,7 @@ struct NativePeerRow: View {
         case "opened":
             isOpen = event["success"] as? Bool ?? (event["success"] as? String == "true")
             replay = event["replay_terminal_output"] as? Bool ?? (event["replay_terminal_output"] as? String == "true")
-            status = isOpen ? "已连接 · \(columns) × \(rows)" : (event["message"] as? String ?? "终端打开失败")
+            status = isOpen ? NativeF("已连接 · %@ × %@", String(columns), String(rows)) : (event["message"] as? String ?? "终端打开失败")
             if isOpen {
                 call("terminalResize", ["rows": rows, "cols": columns])
             } else { started = false; openRequested = false }
@@ -227,7 +227,7 @@ struct NativePeerRow: View {
             }
         case "closed":
             isOpen = false; started = false; openRequested = false
-            status = "Shell 已结束 · 退出码 \(event["exit_code"].map { String(describing: $0) } ?? "0")"
+            status = NativeF("Shell 已结束 · 退出码 %@", event["exit_code"].map { String(describing: $0) } ?? "0")
         case "error":
             isOpen = false; started = false; openRequested = false; status = event["message"] as? String ?? "终端发生错误"
         default: break
@@ -914,7 +914,7 @@ struct NativeRemoteDeleteConfirmation: Identifiable {
                     }
                     self.path = directory.path; self.entries = directory.entries
                     self.loading = false
-                    if !self.transferring { self.status = "\(directory.entries.count) 个项目" }
+                    if !self.transferring { self.status = NativeF("%@ 个项目", String(directory.entries.count)) }
                 } catch is CancellationError {
                 } catch {
                     guard !Task.isCancelled else { return }
@@ -942,7 +942,7 @@ struct NativeRemoteDeleteConfirmation: Identifiable {
         case "job_progress":
             let bytes = Int64(Double(event["finished_size"] as? String ?? "") ?? 0)
             if downloadTarget != nil { downloadFinished = bytes }
-            status = "已传输 \(ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file))"
+            status = NativeF("已传输 %@", ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file))
         case "job_done":
             if waitingForEmptyFolders { folderTransferFinished = true; status = "正在保存空文件夹…" }
             else { finishDownloadJob() }

@@ -175,9 +175,10 @@ final class NativeFrontendUITests: XCTestCase {
     @MainActor
     func testLanguageSettingsSwitchImmediatelyAndPersistAfterRelaunch() throws {
         let app = XCUIApplication()
-        app.launchArguments = []
+        app.launchArguments = ["-NativeUITestImmersive", "NO", "-native.launch-restore", "NO", "-native.foreground-reconnect", "NO", "-native.tailscale.enabled", "NO"]
         app.launch()
-        app.tabBars.buttons.element(boundBy: 2).tap()
+        let settings = app.buttons.matching(NSPredicate(format: "label == %@ OR label == %@", "设置", "Settings")).firstMatch
+        XCTAssertTrue(settings.waitForExistence(timeout: 10)); settings.tap()
         let language = app.buttons["native.languageSettings"]
         for _ in 0..<4 { if language.isHittable { break }; app.swipeUp() }
         XCTAssertTrue(language.waitForExistence(timeout: 5)); language.tap()
@@ -186,13 +187,13 @@ final class NativeFrontendUITests: XCTestCase {
         XCTAssertTrue(english.waitForExistence(timeout: 5)); english.tap()
         XCTAssertTrue(app.navigationBars["Language"].waitForExistence(timeout: 5))
         XCTAssertFalse(app.buttons["native.translationProvider"].exists)
-        XCTAssertTrue(app.descendants(matching: .any)["native.automaticTranslation"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["native.automaticTranslation"].exists)
         app.terminate()
-        app.launchArguments = []
+        app.launchArguments = ["-NativeUITestImmersive", "NO", "-native.launch-restore", "NO", "-native.foreground-reconnect", "NO", "-native.tailscale.enabled", "NO"]
         app.launch()
         XCTAssertTrue(app.buttons["Settings"].firstMatch.waitForExistence(timeout: 5))
         // Restore the Chinese selection for the rest of this existing UI suite.
-        app.tabBars.buttons.element(boundBy: 2).tap()
+        app.buttons["Settings"].firstMatch.tap()
         let restore = app.buttons["native.languageSettings"]
         for _ in 0..<4 { if restore.isHittable { break }; app.swipeUp() }
         restore.tap()

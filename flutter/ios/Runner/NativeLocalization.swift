@@ -51,6 +51,7 @@ final class NativeTranslationStore: @unchecked Sendable {
     func lookup(_ source: String, language: String? = nil) -> String {
         let code = language ?? self.language
         if code == "zh-cn" { return source }
+        if code == "en" { return resources?.translations["en"]?[source] ?? source }
         lock.lock(); let cached = cache[code]?[source]; lock.unlock()
         if let value = resources?.translations[code]?[source], !value.isEmpty { return value }
         return cached ?? source
@@ -118,21 +119,23 @@ struct NativeLanguageSettings: View {
     @ObservedObject private var localization = NativeLocalization.shared
     var body: some View {
         Form {
-            Section {
-                HStack {
-                    Label(NativeL("自动补全译文"), systemImage: "translate")
-                    Spacer()
-                    if localization.translating { ProgressView() }
-                    else { Text("\(NativeTranslationStore.shared.missing(for: localization.language).count)").foregroundStyle(.secondary) }
-                }.accessibilityIdentifier("native.automaticTranslation")
-                if let message = localization.translationMessage {
-                    Text(verbatim: message).font(.footnote).foregroundStyle(.secondary)
-                    if !localization.translating {
-                        Button(NativeL("重试翻译")) { localization.retryTranslation += 1 }
+            if localization.language != "en" {
+                Section {
+                    HStack {
+                        Label(NativeL("自动补全译文"), systemImage: "translate")
+                        Spacer()
+                        if localization.translating { ProgressView() }
+                        else { Text("\(NativeTranslationStore.shared.missing(for: localization.language).count)").foregroundStyle(.secondary) }
+                    }.accessibilityIdentifier("native.automaticTranslation")
+                    if let message = localization.translationMessage {
+                        Text(verbatim: message).font(.footnote).foregroundStyle(.secondary)
+                        if !localization.translating {
+                            Button(NativeL("重试翻译")) { localization.retryTranslation += 1 }
+                        }
                     }
+                } footer: {
+                    Text(NativeL("优先使用内置译文，缺失的界面文字自动使用苹果翻译补全并保存在本机。首次可能需要下载语言包；苹果不支持的语言保留原文。不会翻译远程画面、主机名或输入内容。"))
                 }
-            } footer: {
-                Text(NativeL("优先使用内置译文，缺失的界面文字自动使用苹果翻译补全并保存在本机。首次可能需要下载语言包；苹果不支持的语言保留原文。不会翻译远程画面、主机名或输入内容。"))
             }
             Section {
                 choice("", title: NativeL("跟随系统"))
@@ -144,7 +147,7 @@ struct NativeLanguageSettings: View {
         .navigationTitle(NativeL("语言"))
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("native.languagePage")
-        .task { await localization.loadAppleLanguages() }
+        .task { if localization.language != "en" { await localization.loadAppleLanguages() } }
     }
     private func choice(_ code: String, title: String) -> some View {
         Button { localization.select(code) } label: {
@@ -175,7 +178,7 @@ private struct NativeAutomaticTranslation: ViewModifier {
                 localization.translationMessage = nil
                 localization.translating = false
                 let language = localization.language
-                guard !NativeTranslationStore.shared.missing(for: language).isEmpty else { return }
+                guard language != "en", !NativeTranslationStore.shared.missing(for: language).isEmpty else { return }
                 let availability = await LanguageAvailability().status(from: Locale.Language(identifier: "zh-Hans"), to: Locale.Language(identifier: NativeTranslationStore.appleIdentifier(language)))
                 guard !Task.isCancelled else { return }
                 guard availability != .unsupported else {
@@ -186,6 +189,7 @@ private struct NativeAutomaticTranslation: ViewModifier {
             }
             .translationTask(configuration) { session in
                 let language = localization.language
+                guard language != "en" else { return }
                 localization.translating = true
                 defer { if localization.language == language { localization.translating = false } }
                 do {

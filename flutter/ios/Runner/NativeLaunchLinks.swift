@@ -249,6 +249,6 @@ struct NativeConnectDeviceIntent: AppIntent {
 }
 struct NativeDeviceAppShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
-        AppShortcut(intent: NativeConnectDeviceIntent(), phrases: ["使用 \(.applicationName) 连接设备"], shortTitle: "连接设备", systemImageName: "display")
+        AppShortcut(intent: NativeConnectDeviceIntent(), phrases: ["Connect to a device with \(.applicationName)"], shortTitle: "连接设备", systemImageName: "display")
     }
 }

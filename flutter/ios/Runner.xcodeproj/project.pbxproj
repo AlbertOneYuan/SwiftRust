@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAEE00000000000000000005 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AAEE00000000000000000006 /* AppShortcuts.xcstrings */; };
+		AAEE00000000000000000003 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AAEE00000000000000000004 /* Localizable.xcstrings */; };
 		AADD00000000000000000001 /* NativeDictation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADD00000000000000000002 /* NativeDictation.swift */; };
 		D017C0DE100000000000A139 /* NativeTraffic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017C0DE000000000000A139 /* NativeTraffic.swift */; };
 		D017C0DE100000000000A140 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = D017C0DE000000000000A140 /* PostHog */; };
@@ -75,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AAEE00000000000000000006 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
+		AAEE00000000000000000004 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AADD00000000000000000002 /* NativeDictation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDictation.swift; sourceTree = "<group>"; };
 		D017C0DE000000000000A139 /* NativeTraffic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTraffic.swift; sourceTree = "<group>"; };
 		D017C0DE000000000000A138 /* AirDeviceProof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDeviceProof.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 				25E95D8B1B11AEE653FD6D01 /* NativeImmersiveSessionView.swift */,
 				78D2F6B4B726815B8B0BBE1A /* NativeDeviceSessions.swift */,
 				AADD00000000000000000002 /* NativeDictation.swift */,
+				AAEE00000000000000000006 /* AppShortcuts.xcstrings */,
+				AAEE00000000000000000004 /* Localizable.xcstrings */,
 				3ED70601B31F6A3A9427D929 /* SwiftTermLicense.txt */,
 				EDF4B72027B37E217CFFF5FC /* AGPL-3.0.txt */,
 				F78EFF8C1134F58A1F5B3EED /* ThirdPartyNotices.txt */,
@@ -436,6 +442,8 @@
 				D017C0DE100000000000A134 /* RustDeskNotice.txt in Resources */,
 				D017C0DE100000000000A135 /* BrandNotices.txt in Resources */,
 				F548A3F97AB05D91A2786EDE /* NativeLanguages.json in Resources */,
+				AAEE00000000000000000005 /* AppShortcuts.xcstrings in Resources */,
+				AAEE00000000000000000003 /* Localizable.xcstrings in Resources */,
 				D017C0DE100000000000A130 /* PrivacyInfo.xcprivacy in Resources */,
 				2D43ABF593208A1ACD9299EA /* ShortcutTemplates in Resources */,
 			);

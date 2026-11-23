@@ -402,6 +402,31 @@ final class NativeFrontendTests: XCTestCase {
         XCTAssertTrue(pages.allSatisfy { $0.count <= 16_000 })
         XCTAssertEqual(pages.joined(), document)
     }
+    func testShortcutMetadataHasBundledEnglishTranslations() throws {
+        let path = try XCTUnwrap(Bundle.main.path(forResource: "en", ofType: "lproj"))
+        let english = try XCTUnwrap(Bundle(path: path))
+        XCTAssertEqual(english.localizedString(forKey: "连接设备", value: nil, table: nil), "Connect to Device")
+        XCTAssertEqual(english.localizedString(forKey: "连接 ${id}（${mode}）", value: nil, table: nil), "Connect to ${id} (${mode})")
+        XCTAssertEqual(english.localizedString(forKey: "Connect to a device with ${applicationName}", value: nil, table: "AppShortcuts"), "Connect to a device with ${applicationName}")
+    }
+
+    func testBuiltInEnglishCoversEveryNativeTemplate() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "NativeLanguages", withExtension: "json"))
+        let data = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
+        let sources = try XCTUnwrap(data["sources"] as? [String])
+        let translations = try XCTUnwrap(data["translations"] as? [String: [String: String]])
+        let english = try XCTUnwrap(translations["en"])
+        XCTAssertFalse(sources.isEmpty)
+        for source in sources {
+            let value = try XCTUnwrap(english[source], "Missing English: \(source)")
+            XCTAssertFalse(value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            XCTAssertNil(value.range(of: "[\\u3400-\\u9fff]", options: .regularExpression), source)
+            XCTAssertTrue(NativeTranslationStore.validTranslation(source: source, target: value), source)
+            XCTAssertEqual(NativeTranslationStore.shared.lookup(source, language: "en"), value)
+        }
+        XCTAssertTrue(NativeTranslationStore.shared.missing(for: "en").isEmpty)
+    }
+
     func testLanguageSelectionUsesOriginalTranslationsAndSystemFallback() {
         let store = NativeTranslationStore.shared
         XCTAssertEqual(store.languages.filter { $0[0] == "en" }.count, 1)

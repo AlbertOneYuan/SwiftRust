@@ -67,7 +67,7 @@ final class NativeShortcutLibrary: ObservableObject {
         self.defaults = defaults
         if let data = defaults.data(forKey: storageKey) {
             do { items = try JSONDecoder().decode([NativeShortcut].self, from: data) }
-            catch { items = []; self.error = "无法读取自定义快捷键：\(error.localizedDescription)" }
+            catch { items = []; self.error = NativeF("无法读取自定义快捷键：%@", error.localizedDescription) }
         } else { items = NativeShortcut.defaults }
     }
     func save(_ item: NativeShortcut) {
@@ -80,7 +80,7 @@ final class NativeShortcutLibrary: ObservableObject {
     func restoreDefaults() { items = NativeShortcut.defaults; persist() }
     private func persist() {
         do { defaults.set(try JSONEncoder().encode(items), forKey: storageKey) }
-        catch { self.error = "无法保存快捷键：\(error.localizedDescription)" }
+        catch { self.error = NativeF("无法保存快捷键：%@", error.localizedDescription) }
     }
 }
 
